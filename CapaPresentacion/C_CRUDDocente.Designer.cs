@@ -34,11 +34,11 @@ namespace CapaPresentacion
             this.dgvDocentes = new System.Windows.Forms.DataGridView();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.text_buscar = new System.Windows.Forms.TextBox();
             this.btnAgregar = new System.Windows.Forms.Button();
             this.btnEditar = new System.Windows.Forms.Button();
             this.btnEliminar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
-            this.text_buscar = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvDocentes)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -108,6 +108,14 @@ namespace CapaPresentacion
             this.panel2.Size = new System.Drawing.Size(520, 62);
             this.panel2.TabIndex = 6;
             // 
+            // text_buscar
+            // 
+            this.text_buscar.Location = new System.Drawing.Point(33, 21);
+            this.text_buscar.Name = "text_buscar";
+            this.text_buscar.Size = new System.Drawing.Size(228, 22);
+            this.text_buscar.TabIndex = 9;
+            this.text_buscar.TextChanged += new System.EventHandler(this.text_buscar_TextChanged);
+            // 
             // btnAgregar
             // 
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -157,14 +165,6 @@ namespace CapaPresentacion
             this.label1.Size = new System.Drawing.Size(251, 46);
             this.label1.TabIndex = 2;
             this.label1.Text = "DOCENTES";
-            // 
-            // text_buscar
-            // 
-            this.text_buscar.Location = new System.Drawing.Point(33, 21);
-            this.text_buscar.Name = "text_buscar";
-            this.text_buscar.Size = new System.Drawing.Size(228, 22);
-            this.text_buscar.TabIndex = 9;
-            this.text_buscar.TextChanged += new System.EventHandler(this.text_buscar_TextChanged);
             // 
             // C_CRUDDocente
             // 
