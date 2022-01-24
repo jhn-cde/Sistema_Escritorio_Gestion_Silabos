@@ -100,7 +100,9 @@ namespace CapaPresentacion
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
+            P_Login login = new P_Login();
+            login.Show();
         }
         #endregion
 
