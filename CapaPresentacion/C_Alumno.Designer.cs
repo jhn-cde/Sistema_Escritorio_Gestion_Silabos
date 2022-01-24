@@ -46,16 +46,19 @@
             this.dgvAlumnos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvAlumnos.BackgroundColor = System.Drawing.Color.White;
             this.dgvAlumnos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvAlumnos.Location = new System.Drawing.Point(10, 80);
+            this.dgvAlumnos.Location = new System.Drawing.Point(13, 98);
+            this.dgvAlumnos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvAlumnos.Name = "dgvAlumnos";
-            this.dgvAlumnos.Size = new System.Drawing.Size(780, 370);
+            this.dgvAlumnos.RowHeadersWidth = 51;
+            this.dgvAlumnos.Size = new System.Drawing.Size(1040, 455);
             this.dgvAlumnos.TabIndex = 0;
             // 
             // btnSubir
             // 
-            this.btnSubir.Location = new System.Drawing.Point(86, 29);
+            this.btnSubir.Location = new System.Drawing.Point(115, 36);
+            this.btnSubir.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnSubir.Name = "btnSubir";
-            this.btnSubir.Size = new System.Drawing.Size(75, 23);
+            this.btnSubir.Size = new System.Drawing.Size(100, 28);
             this.btnSubir.TabIndex = 1;
             this.btnSubir.Text = "Subir Lista Alumnos";
             this.btnSubir.UseVisualStyleBackColor = true;
@@ -66,19 +69,22 @@
             this.rTBSubirAlumnos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.rTBSubirAlumnos.Location = new System.Drawing.Point(10, 80);
+            this.rTBSubirAlumnos.Location = new System.Drawing.Point(13, 98);
+            this.rTBSubirAlumnos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.rTBSubirAlumnos.Name = "rTBSubirAlumnos";
-            this.rTBSubirAlumnos.Size = new System.Drawing.Size(780, 370);
+            this.rTBSubirAlumnos.Size = new System.Drawing.Size(1039, 454);
             this.rTBSubirAlumnos.TabIndex = 2;
             this.rTBSubirAlumnos.Text = "";
             this.rTBSubirAlumnos.Visible = false;
+            this.rTBSubirAlumnos.TextChanged += new System.EventHandler(this.rTBSubirAlumnos_TextChanged);
             // 
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(686, 29);
+            this.btnGuardar.Location = new System.Drawing.Point(915, 36);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(100, 28);
             this.btnGuardar.TabIndex = 3;
             this.btnGuardar.Text = "GUARDAR";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -91,8 +97,9 @@
             this.btnAtras.FlatAppearance.BorderSize = 0;
             this.btnAtras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAtras.Location = new System.Drawing.Point(0, 0);
+            this.btnAtras.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAtras.Name = "btnAtras";
-            this.btnAtras.Size = new System.Drawing.Size(80, 80);
+            this.btnAtras.Size = new System.Drawing.Size(107, 98);
             this.btnAtras.TabIndex = 4;
             this.btnAtras.Text = "Atras";
             this.btnAtras.UseVisualStyleBackColor = false;
@@ -100,7 +107,7 @@
             // 
             // C_Alumno
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.btnAtras);
@@ -108,8 +115,9 @@
             this.Controls.Add(this.rTBSubirAlumnos);
             this.Controls.Add(this.btnSubir);
             this.Controls.Add(this.dgvAlumnos);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "C_Alumno";
-            this.Size = new System.Drawing.Size(800, 450);
+            this.Size = new System.Drawing.Size(1067, 554);
             this.Load += new System.EventHandler(this.C_Alumno_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvAlumnos)).EndInit();
             this.ResumeLayout(false);

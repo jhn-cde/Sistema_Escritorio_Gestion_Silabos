@@ -73,11 +73,19 @@ namespace CapaDatos
             conexion.cmd.Parameters.AddWithValue("@IdAsignacion", IdAsignacion);
             return conexion.executeReader();
         }
-        public DataTable ObtenerRegistro(int idSilabo)
+        public DataTable Temas(int IdAsignacion)
         {
-            string sql = "select * from TRegistroAvance where ID_Silabo = @IdSilabo";
+            string sql = "select ID, Unidad, Capitulo, Tema, NroHoras from TSilabo where Asignacion = @IdAsignacion";
+            conexion.setComando(sql);
+            conexion.cmd.Parameters.AddWithValue("@IdAsignacion", IdAsignacion);
+            return conexion.executeReader();
+        }
+        public DataTable ObtenerRegistro(int idSilabo, DateTime fecha)
+        {
+            string sql = "select * from TRegistroAvance where ID_Silabo = @IdSilabo and Fecha = @Fecha";
             conexion.setComando(sql);
             conexion.cmd.Parameters.AddWithValue("@IdSilabo", idSilabo);
+            conexion.cmd.Parameters.AddWithValue("@Fecha", fecha);
             return conexion.executeReader();
         }
     }

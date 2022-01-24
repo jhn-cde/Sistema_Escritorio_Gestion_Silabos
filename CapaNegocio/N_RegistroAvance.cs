@@ -67,12 +67,17 @@ namespace CapaNegocio
         {
             return d_RegistroAvance.TemasSinAvanzar(IdAsignacion);
         }
-        public int IdRegistro(int IdSilabo)
+
+        public DataTable TodosLosTemas(int IdAsignacion)
         {
-            DataTable dataTable = d_RegistroAvance.ObtenerRegistro(IdSilabo);
+            return d_RegistroAvance.Temas(IdAsignacion);
+        }
+        public int IdRegistro(int IdSilabo, DateTime fecha)
+        {
+            DataTable dataTable = d_RegistroAvance.ObtenerRegistro(IdSilabo, fecha);
             foreach (DataRow row in dataTable.Rows)
             {
-                return Convert.ToInt32(row["ID"]);
+                return Convert.ToInt32(row["ID"].ToString());
             }
             return -1;
         }

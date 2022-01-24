@@ -20,6 +20,7 @@ namespace CapaPresentacion
         N_Asistencia n_Asistencia = new N_Asistencia();
         N_RegistroAvance n_RegistroAvance = new N_RegistroAvance();
         DataTable dt;
+        DataTable dataTable;
         //Declarar un delegate y Event. StatusUpdate
         public delegate void StatusUpdateHandler(object sender, EventArgs e);
         public event StatusUpdateHandler OnUpdateStatus;
@@ -79,10 +80,11 @@ namespace CapaPresentacion
         private void C_Control_Load_1(object sender, EventArgs e)
         {
             dt = n_RegistroAvance.TemasSinAvanzar(asignacionID);
-            if(dt != null)
+            dataTable = n_RegistroAvance.TodosLosTemas(asignacionID);
+            if (dt != null)
             {
-                List<string> list = ObtenerUnidad(dt);
-                List<string> vs = ObtenerCapitulo(dt);
+                List<string> list = ObtenerUnidad(dataTable);
+                List<string> vs = ObtenerCapitulo(dataTable);
                 foreach (string item in list)
                 {
                     cbUnidad.Items.Add(item);
@@ -91,11 +93,14 @@ namespace CapaPresentacion
                 {
                     cbCapitulo.Items.Add(item);
                 }
-                foreach (DataRow dr in dt.Rows)
+                foreach (DataRow dr in dataTable.Rows)
                 {
                     cbTema.Items.Add(dr["Tema"]);
                 }
             }
+            cbTema.SelectedItem = dt.Rows[0]["Tema"];
+            cbCapitulo.SelectedItem = dt.Rows[0]["Capitulo"];
+            cbUnidad.SelectedItem = dt.Rows[0]["Unidad"];
             // rellenar lista de alumnos
             N_AlumnoCurso n_AlumnoCurso = new N_AlumnoCurso();
             DataTable dt_SubirAlumnosCurso = n_AlumnoCurso.Mostrar(asignacionID);
@@ -109,7 +114,7 @@ namespace CapaPresentacion
             var value = cbTema.SelectedItem;
             foreach (DataRow dr in dt1.Rows)
             {
-                if (dr["Tema"] == value)
+                if (dr["Tema"].ToString() == value.ToString())
                 {
                     return Convert.ToInt32(dr["Id"]);
                 }
@@ -122,39 +127,41 @@ namespace CapaPresentacion
             var value = cbTema.SelectedItem;
             foreach (DataRow dr in dt1.Rows)
             {
-                if (dr["Tema"] == value)
+                if (dr["Tema"].ToString() == value.ToString())
                 {
-                    return Convert.ToInt32(dr["NroHoras"]);
+                    return Convert.ToInt32(dr["NroHoras"].ToString());
                 }
             }
             return -1;
         }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            if(cbUnidad.SelectedIndex > -1 && cbCapitulo.SelectedIndex > -1 && cbTema.SelectedIndex > -1)
+            if (cbUnidad.SelectedIndex > -1 && cbCapitulo.SelectedIndex > -1 && cbTema.SelectedIndex > -1)
             {
-                int IdSilabo = idSilabo(dt);
+                int IdSilabo = idSilabo(dataTable);
+                MessageBox.Show(dataTable.Rows.Count.ToString());
                 if (IdSilabo == -1)
                 {
                     MessageBox.Show("Error al seleccionar");
                 }
                 else
                 {
+                    DateTime fecha = DateTime.Now;
                     n_RegistroAvance.ID_Silabo = IdSilabo;
-                    n_RegistroAvance.Fecha = DateTime.Now;
+                    n_RegistroAvance.Fecha = fecha;
                     n_RegistroAvance.Observacion = textBoxObservacion.Text;
-                    n_RegistroAvance.NroHoras = nroHoras(dt);
-                    n_RegistroAvance.Guardar();
-                    int IdAvance = n_RegistroAvance.IdRegistro(IdSilabo);
+                    n_RegistroAvance.NroHoras = nroHoras(dataTable);
+                    n_RegistroAvance.Guardar();                  
+                    int IdAvance = n_RegistroAvance.IdRegistro(IdSilabo, fecha);
                     foreach (DataGridViewRow fila in dgvAlumnos.Rows)
                     {
                         DataGridViewCheckBoxCell b = (DataGridViewCheckBoxCell)fila.Cells["Asistencia"];
                         n_Asistencia.ID_Registro = IdAvance;
                         n_Asistencia.CodAlumno = fila.Cells[2].Value.ToString();
                         n_Asistencia.Asistio = Convert.ToBoolean(b.Value);
-                        n_Asistencia.Guardar();
-                        MessageBox.Show("Guardado Correctamente");
+                        n_Asistencia.Guardar(); 
                     }
+                    MessageBox.Show("Guardado Correctamente");
                 }
             }
             else
@@ -166,9 +173,10 @@ namespace CapaPresentacion
         private void cbTema_SelectedIndexChanged(object sender, EventArgs e)
         {
             var value = cbTema.SelectedItem;
-            foreach (DataRow dr in dt.Rows)
+            dataTable = n_RegistroAvance.TodosLosTemas(asignacionID);
+            foreach (DataRow dr in dataTable.Rows)
             {
-                if(dr["Tema"] == value)
+                if(dr["Tema"].ToString() == value.ToString())
                 {
                     cbCapitulo.SelectedItem = dr["Capitulo"];
                     cbUnidad.SelectedItem = dr["Unidad"];

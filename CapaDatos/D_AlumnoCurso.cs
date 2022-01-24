@@ -35,6 +35,16 @@ namespace CapaDatos
             conexion.cmd.Parameters.AddWithValue("@Asignacion", Asignacion);
             return conexion.executeReader();
         }
+        public DataTable MostrarAsistenciaFecha(int Asignacion)
+        {
+            string sql = "select T.Fecha, T.CodAlumno, T.Asistio from TSilabo S inner join " +
+                "(select R.ID_Silabo, R.Fecha, A.CodAlumno, A.Asistio from TRegistroAvance R inner join TAsistencia A " +
+                "on R.Id = A.ID_Registro) T on S.Id = T.ID_Silabo where S.Asignacion = @Asignacion";
+            conexion.setComando(sql);
+            conexion.cmd.Parameters.AddWithValue("@Asignacion", Asignacion);
+            return conexion.executeReader();
+        }
+        
         public DataTable Buscar(int Asignacion, String Texto)
         {
             string sql = "SELECT * FROM TAlumnoCurso WHERE (Asignacion = @Asignacion) AND (NRO LIKE (@Texto + '%') OR CodAlumno LIKE (@Texto + '%'))";

@@ -1,6 +1,7 @@
 ﻿using CapaDatos;
 using CapaEntidades;
 using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Data;
 
@@ -59,6 +60,38 @@ namespace CapaNegocio
         public bool ElminarCurso(int Asignacion)
         {
             return d_AlumnoCurso.ElminarCurso(Asignacion);
+        }
+        public List<bool> AsistioFecha(int asignacion, string Fecha)
+        {
+            DataTable dataTable = d_AlumnoCurso.MostrarAsistenciaFecha(asignacion);
+            List<bool> list = new List<bool>();
+            if (dataTable != null)
+            {
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    if(row["Fecha"].ToString().ToString() == Fecha)
+                    {
+                        list.Add(Convert.ToBoolean(row["Asistio"]));
+                    }
+                }
+            }
+            return list;
+        }
+        public List<string> Fechas(int asignacion)
+        {
+            DataTable dataTable = d_AlumnoCurso.MostrarAsistenciaFecha(asignacion);
+            List<string> list = new List<string>();
+            if(dataTable != null)
+            {
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    if (!list.Contains(row["Fecha"].ToString()))
+                    {
+                        list.Add(row["Fecha"].ToString());
+                    }
+                }
+            }
+            return list;
         }
     }
 }

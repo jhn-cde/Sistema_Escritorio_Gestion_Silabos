@@ -63,6 +63,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvCursos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvCursos.ColumnHeadersHeight = 29;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -72,7 +73,8 @@
             dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvCursos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvCursos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
-            this.dgvCursos.Location = new System.Drawing.Point(0, 50);
+            this.dgvCursos.Location = new System.Drawing.Point(0, 62);
+            this.dgvCursos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvCursos.MultiSelect = false;
             this.dgvCursos.Name = "dgvCursos";
             this.dgvCursos.ReadOnly = true;
@@ -81,7 +83,7 @@
             this.dgvCursos.RowHeadersWidth = 51;
             this.dgvCursos.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dgvCursos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvCursos.Size = new System.Drawing.Size(800, 400);
+            this.dgvCursos.Size = new System.Drawing.Size(1067, 492);
             this.dgvCursos.TabIndex = 1;
             this.dgvCursos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvCursos_CellDoubleClick);
             // 
@@ -92,8 +94,9 @@
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 50);
+            this.panel1.Size = new System.Drawing.Size(1067, 62);
             this.panel1.TabIndex = 5;
             // 
             // panel2
@@ -104,17 +107,19 @@
             this.panel2.Controls.Add(this.btnEditar);
             this.panel2.Controls.Add(this.btnAgregar);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(410, 0);
+            this.panel2.Location = new System.Drawing.Point(547, 0);
+            this.panel2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(390, 50);
+            this.panel2.Size = new System.Drawing.Size(520, 62);
             this.panel2.TabIndex = 2;
             // 
             // label2
             // 
             this.label2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.label2.Location = new System.Drawing.Point(13, 36);
+            this.label2.Location = new System.Drawing.Point(17, 44);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(180, 1);
+            this.label2.Size = new System.Drawing.Size(239, 1);
             this.label2.TabIndex = 7;
             // 
             // tbBuscar
@@ -122,10 +127,11 @@
             this.tbBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbBuscar.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(100)))), ((int)(((byte)(100)))), ((int)(((byte)(100)))));
-            this.tbBuscar.Location = new System.Drawing.Point(15, 16);
+            this.tbBuscar.Location = new System.Drawing.Point(20, 20);
+            this.tbBuscar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbBuscar.Multiline = true;
             this.tbBuscar.Name = "tbBuscar";
-            this.tbBuscar.Size = new System.Drawing.Size(170, 20);
+            this.tbBuscar.Size = new System.Drawing.Size(227, 25);
             this.tbBuscar.TabIndex = 6;
             this.tbBuscar.Text = "Buscar";
             this.tbBuscar.Click += new System.EventHandler(this.tbBuscar_Click);
@@ -135,9 +141,10 @@
             // btnEliminar
             // 
             this.btnEliminar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEliminar.Location = new System.Drawing.Point(330, 9);
+            this.btnEliminar.Location = new System.Drawing.Point(440, 11);
+            this.btnEliminar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEliminar.Name = "btnEliminar";
-            this.btnEliminar.Size = new System.Drawing.Size(55, 30);
+            this.btnEliminar.Size = new System.Drawing.Size(73, 37);
             this.btnEliminar.TabIndex = 5;
             this.btnEliminar.Text = "Eliminar";
             this.btnEliminar.UseVisualStyleBackColor = true;
@@ -146,9 +153,10 @@
             // btnEditar
             // 
             this.btnEditar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnEditar.Location = new System.Drawing.Point(270, 9);
+            this.btnEditar.Location = new System.Drawing.Point(360, 11);
+            this.btnEditar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnEditar.Name = "btnEditar";
-            this.btnEditar.Size = new System.Drawing.Size(55, 30);
+            this.btnEditar.Size = new System.Drawing.Size(73, 37);
             this.btnEditar.TabIndex = 4;
             this.btnEditar.Text = "Editar";
             this.btnEditar.UseVisualStyleBackColor = true;
@@ -157,9 +165,10 @@
             // btnAgregar
             // 
             this.btnAgregar.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnAgregar.Location = new System.Drawing.Point(209, 9);
+            this.btnAgregar.Location = new System.Drawing.Point(279, 11);
+            this.btnAgregar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnAgregar.Name = "btnAgregar";
-            this.btnAgregar.Size = new System.Drawing.Size(55, 30);
+            this.btnAgregar.Size = new System.Drawing.Size(73, 37);
             this.btnAgregar.TabIndex = 3;
             this.btnAgregar.Text = "Agregar";
             this.btnAgregar.UseVisualStyleBackColor = true;
@@ -171,19 +180,21 @@
             this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(158, 37);
+            this.label1.Size = new System.Drawing.Size(198, 46);
             this.label1.TabIndex = 1;
             this.label1.Text = "CURSOS";
             // 
             // C_CRUDCurso
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.dgvCursos);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "C_CRUDCurso";
-            this.Size = new System.Drawing.Size(800, 450);
+            this.Size = new System.Drawing.Size(1067, 554);
             this.EnabledChanged += new System.EventHandler(this.C_CRUDCurso_EnabledChanged);
             ((System.ComponentModel.ISupportInitialize)(this.dgvCursos)).EndInit();
             this.panel1.ResumeLayout(false);
