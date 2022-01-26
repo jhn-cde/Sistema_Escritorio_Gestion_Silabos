@@ -248,19 +248,19 @@ namespace CapaPresentacion
         {
             day = day.ToLower();
             string dia = "-1";
-            if (day == "monday")
+            if (day == "monday" || day == "lunes")
                 dia = "lunes";
-            else if (day == "tuesday")
+            else if (day == "tuesday" || day == "martes")
                 dia = "martes";
-            else if (day == "wednesday")
+            else if (day == "wednesday" || day == "miercoles")
                 dia = "miercoles";
-            else if (day == "thursday")
+            else if (day == "thursday" || day == "jueves")
                 dia = "jueves";
-            else if (day == "friday")
+            else if (day == "friday" || day == "viernes")
                 dia = "viernes";
-            else if (day == "saturday")
+            else if (day == "saturday" || day == "sabado")
                 dia = "sabado";
-            else if (day == "sunday")
+            else if (day == "sunday" || day == "domingo")
                 dia = "domingo";
             return dia.ToUpper();
         }

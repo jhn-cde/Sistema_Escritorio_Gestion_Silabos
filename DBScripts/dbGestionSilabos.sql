@@ -156,9 +156,9 @@ GO
 CREATE TABLE [dbo].[TRegistroAvance](
 	[ID] [int] IDENTITY(1,1) NOT NULL PRIMARY KEY,
 	[ID_Silabo] [int] NOT NULL FOREIGN KEY REFERENCES TSilabo(ID),
-	[Dia]  [varchar] (20) NOT NULL,
-	[NroHoras] [int] NOT NULL,
 	[Fecha] datetime NOT NULL,
+	[NroHoras] [int] NOT NULL,
+	[FechaRegistro] datetime NOT NULL,
 	[Observacion] [varchar](200) NOT NULL,
 )
 GO
@@ -542,9 +542,3 @@ INSERT [dbo].[TSemestre] ([Semestre], [Fecha_inicio], [Fecha_fin]) VALUES ('2021
 INSERT [dbo].[TSemestre] ([Semestre], [Fecha_inicio], [Fecha_fin]) VALUES ('2021-II', CONVERT(DATE,'18-10-2021',105), CONVERT(DATE,'14-2-2022',105))
 GO
 
-
-select TD.Dia, TD.HR_fin - TD.HR_inicio as nroHoras
-from TDia TD inner join TAsignacion TA on TD.Asignacion = TA.ID
-where TA.ID = 113
-
-select * from TSemestre
