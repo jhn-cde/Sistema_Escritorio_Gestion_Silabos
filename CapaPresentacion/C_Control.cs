@@ -16,11 +16,11 @@ namespace CapaPresentacion
 {
     public partial class C_Control : UserControl
     {
-        protected Conexion aConexion;
         N_Asistencia n_Asistencia = new N_Asistencia();
         N_RegistroAvance n_RegistroAvance = new N_RegistroAvance();
         DataTable temasNoCursados;
         DataTable ultimoTema;
+        DataTable dias;
         //Declarar un delegate y Event. StatusUpdate
         public delegate void StatusUpdateHandler(object sender, EventArgs e);
         public event StatusUpdateHandler OnUpdateStatus;
@@ -126,6 +126,16 @@ namespace CapaPresentacion
             {
                 dgvAlumnos.DataSource = dt_SubirAlumnosCurso;
             }
+
+            // Rellenar dias de avance
+            DataRow Semestre = new N_Semestre().MostrarUltimo();
+            dias = new N_Dia().DiasAsignacion(asignacionID.ToString());
+            DateTime minDate = Convert.ToDateTime(Semestre["Fecha_inicio"].ToString());
+            DateTime maxDate = Convert.ToDateTime(Semestre["Fecha_fin"].ToString());
+            dateTimePicker.MinDate = minDate;
+            dateTimePicker.MaxDate = maxDate;
+
+            dateTimePicker.Value = siguienteClase();
         }
         private void C_Control_Load_1(object sender, EventArgs e)
         {
@@ -169,20 +179,28 @@ namespace CapaPresentacion
                 {
                     DateTime fecha = DateTime.Now;
                     n_RegistroAvance.ID_Silabo = IdSilabo;
-                    n_RegistroAvance.Fecha = fecha;
+                    n_RegistroAvance.Fecha = dateTimePicker.Value;
+                    n_RegistroAvance.FechaRegistro = fecha;
                     n_RegistroAvance.Observacion = textBoxObservacion.Text;
                     n_RegistroAvance.NroHoras = nroHoras(temasNoCursados);
                     n_RegistroAvance.Guardar();                  
                     int IdAvance = n_RegistroAvance.IdRegistro(IdSilabo, fecha);
-                    foreach (DataGridViewRow fila in dgvAlumnos.Rows)
+                    if(IdAvance != -1)
                     {
-                        DataGridViewCheckBoxCell b = (DataGridViewCheckBoxCell)fila.Cells["Asistencia"];
-                        n_Asistencia.ID_Registro = IdAvance;
-                        n_Asistencia.CodAlumno = fila.Cells[2].Value.ToString();
-                        n_Asistencia.Asistio = Convert.ToBoolean(b.Value);
-                        n_Asistencia.Guardar(); 
+                        foreach (DataGridViewRow fila in dgvAlumnos.Rows)
+                        {
+                            DataGridViewCheckBoxCell b = (DataGridViewCheckBoxCell)fila.Cells["Asistencia"];
+                            n_Asistencia.ID_Registro = IdAvance;
+                            n_Asistencia.CodAlumno = fila.Cells[2].Value.ToString();
+                            n_Asistencia.Asistio = Convert.ToBoolean(b.Value);
+                            n_Asistencia.Guardar();
+                        }
+                        MessageBox.Show("Guardado Correctamente");
                     }
-                    MessageBox.Show("Guardado Correctamente");
+                    else
+                    {
+                        MessageBox.Show("Error!!!");
+                    }
                 }
                 Refrescar();
             }
@@ -203,6 +221,74 @@ namespace CapaPresentacion
                     cbUnidad.SelectedItem = dr["Unidad"];
                 }
             }
+        }
+        private DateTime siguienteClase()
+        {
+            DateTime now = DateTime.Now;
+            string hoy = diaEspañol(now.DayOfWeek.ToString());
+
+            bool valido = false;
+            while (!valido)
+            {
+                foreach (DataRow row in dias.Rows)
+                {
+                    if (row["Dia"].ToString().ToUpper() == hoy)
+                    {
+                        valido = true;
+                        return now;
+                    }
+                }
+
+                now = now.AddDays(1);
+                hoy = diaEspañol(now.DayOfWeek.ToString());
+            }
+            return now;
+        }
+        private string diaEspañol(string day)
+        {
+            day = day.ToLower();
+            string dia = "-1";
+            if (day == "monday")
+                dia = "lunes";
+            else if (day == "tuesday")
+                dia = "martes";
+            else if (day == "wednesday")
+                dia = "miercoles";
+            else if (day == "thursday")
+                dia = "jueves";
+            else if (day == "friday")
+                dia = "viernes";
+            else if (day == "saturday")
+                dia = "sabado";
+            else if (day == "sunday")
+                dia = "domingo";
+            return dia.ToUpper();
+        }
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void dateTimePicker_CloseUp(object sender, EventArgs e)
+        {
+            string day = dateTimePicker.Value.DayOfWeek.ToString();
+            string dia = diaEspañol(day);
+            bool valido = false;
+            string diasString = "";
+
+            foreach (DataRow row in dias.Rows)
+            {
+                diasString += " " + row["Dia"].ToString();
+                if (row["Dia"].ToString().ToUpper() == dia)
+                {
+                    valido = true;
+                }
+            }
+            if (!valido)
+            {
+                MessageBox.Show("Error! elija entre:" + diasString);
+                dateTimePicker.Value = siguienteClase();
+            }
+            //ssageBox.Show("You are in the DateTimePicker.CloseUp event.");
         }
     }
 }

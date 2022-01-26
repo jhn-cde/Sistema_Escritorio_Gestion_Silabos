@@ -32,7 +32,6 @@ namespace CapaNegocio
                 Asistio = this.Asistio,
             };
 
-            Console.WriteLine("Guardando: " + this.ToString());
             d_Asistencia.Agregar(e_Asistencia);
             return 1;
         }

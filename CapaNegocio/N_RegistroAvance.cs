@@ -16,6 +16,8 @@ namespace CapaNegocio
         public string Observacion { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Observacion es requerido")]
 
+        public DateTime FechaRegistro { get; set; }
+
         public int NroHoras { get; set; }
         [Required(AllowEmptyStrings = false, ErrorMessage = "Numero horas es requerido")]
 
@@ -33,7 +35,8 @@ namespace CapaNegocio
                 ID_Silabo = this.ID_Silabo,
                 Fecha = this.Fecha,
                 Observacion = this.Observacion,
-                NroHoras = this.NroHoras
+                NroHoras = this.NroHoras,
+                FechaRegistro = this.FechaRegistro
             };
 
             Console.WriteLine("Guardando: " + this.ToString());
@@ -56,7 +59,8 @@ namespace CapaNegocio
                 ID_Silabo = this.ID_Silabo,
                 Fecha = this.Fecha,
                 Observacion = this.Observacion,
-                NroHoras = this.NroHoras
+                NroHoras = this.NroHoras,
+                FechaRegistro = this.FechaRegistro
             });
         }
         public bool Eliminar(string ID)
@@ -71,7 +75,6 @@ namespace CapaNegocio
         {
             return d_RegistroAvance.UltimoTema(IdAsignacion);
         }
-
         public DataTable TodosLosTemas(int IdAsignacion)
         {
             return d_RegistroAvance.Temas(IdAsignacion);
@@ -79,11 +82,16 @@ namespace CapaNegocio
         public int IdRegistro(int IdSilabo, DateTime fecha)
         {
             DataTable dataTable = d_RegistroAvance.ObtenerRegistro(IdSilabo, fecha);
-            foreach (DataRow row in dataTable.Rows)
+            if(dataTable == null) return -1;
+            else
             {
-                return Convert.ToInt32(row["ID"].ToString());
+                int ans = -1;
+                foreach (DataRow row in dataTable.Rows)
+                {
+                    ans = Convert.ToInt32(row["ID"].ToString());
+                }
+                return ans;
             }
-            return -1;
         }
         
     }

@@ -35,7 +35,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnAtras = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnGuardar = new System.Windows.Forms.Button();
             this.textBoxObservacion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.labelTimeDate = new System.Windows.Forms.Label();
@@ -45,11 +44,12 @@
             this.label2 = new System.Windows.Forms.Label();
             this.cbUnidad = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.dgvAlumnos = new System.Windows.Forms.DataGridView();
             this.Asistencia = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panelLine = new System.Windows.Forms.Panel();
-            this.cbFechas = new System.Windows.Forms.ComboBox();
+            this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -104,7 +104,7 @@
             this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.cbFechas);
+            this.panel1.Controls.Add(this.dateTimePicker);
             this.panel1.Controls.Add(this.textBoxObservacion);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.labelTimeDate);
@@ -118,21 +118,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(680, 80);
             this.panel1.TabIndex = 2;
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.BackColor = System.Drawing.Color.White;
-            this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardar.Location = new System.Drawing.Point(342, 313);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(114, 28);
-            this.btnGuardar.TabIndex = 1;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = false;
-            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // textBoxObservacion
             // 
@@ -157,7 +142,7 @@
             // 
             this.labelTimeDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labelTimeDate.AutoSize = true;
-            this.labelTimeDate.Location = new System.Drawing.Point(604, 11);
+            this.labelTimeDate.Location = new System.Drawing.Point(604, 13);
             this.labelTimeDate.Name = "labelTimeDate";
             this.labelTimeDate.Size = new System.Drawing.Size(69, 13);
             this.labelTimeDate.TabIndex = 2;
@@ -221,6 +206,21 @@
             this.label1.Size = new System.Drawing.Size(44, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Unidad:";
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.BackColor = System.Drawing.Color.White;
+            this.btnGuardar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGuardar.Location = new System.Drawing.Point(342, 313);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(2);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(114, 28);
+            this.btnGuardar.TabIndex = 1;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = false;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // panelPrincipal
             // 
@@ -291,14 +291,17 @@
             this.panelLine.Size = new System.Drawing.Size(780, 1);
             this.panelLine.TabIndex = 4;
             // 
-            // cbFechas
+            // dateTimePicker
             // 
-            this.cbFechas.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.cbFechas.FormattingEnabled = true;
-            this.cbFechas.Location = new System.Drawing.Point(427, 6);
-            this.cbFechas.Name = "cbFechas";
-            this.cbFechas.Size = new System.Drawing.Size(146, 21);
-            this.cbFechas.TabIndex = 5;
+            this.dateTimePicker.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePicker.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePicker.Location = new System.Drawing.Point(427, 10);
+            this.dateTimePicker.Name = "dateTimePicker";
+            this.dateTimePicker.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dateTimePicker.Size = new System.Drawing.Size(123, 20);
+            this.dateTimePicker.TabIndex = 6;
+            this.dateTimePicker.CloseUp += new System.EventHandler(this.dateTimePicker_CloseUp);
+            this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
             // C_Control
             // 
@@ -342,6 +345,6 @@
         private System.Windows.Forms.DataGridView dgvAlumnos;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Asistencia;
         private System.Windows.Forms.Button btnGuardar;
-        private System.Windows.Forms.ComboBox cbFechas;
+        private System.Windows.Forms.DateTimePicker dateTimePicker;
     }
 }
