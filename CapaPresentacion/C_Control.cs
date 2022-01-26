@@ -19,8 +19,8 @@ namespace CapaPresentacion
         protected Conexion aConexion;
         N_Asistencia n_Asistencia = new N_Asistencia();
         N_RegistroAvance n_RegistroAvance = new N_RegistroAvance();
-        DataTable dt;
-        DataTable dataTable;
+        DataTable temasNoCursados;
+        DataTable ultimoTema;
         //Declarar un delegate y Event. StatusUpdate
         public delegate void StatusUpdateHandler(object sender, EventArgs e);
         public event StatusUpdateHandler OnUpdateStatus;
@@ -53,55 +53,72 @@ namespace CapaPresentacion
         {
 
         }
-        private List<string> ObtenerCapitulo(DataTable dt)
+        private List<string> ObtenerLista(string texto, DataTable dt = null)
         {
+            if (dt == null)
+            {
+                dt = temasNoCursados;
+            }
             List<string> list = new List<string>();
             foreach (DataRow dr in dt.Rows)
             {
-                if (!list.Contains(dr["Capitulo"]))
-                {
-                    list.Add(dr["Capitulo"].ToString());
-                }
+                string item = dr[texto].ToString();
+                if (!list.Contains(item)) list.Add(item);
             }
             return list;
         }
-        private List<string> ObtenerUnidad(DataTable dt)
+        private List<string> ObtenerCapitulo()
         {
+            return ObtenerLista("Capitulo");
+        }
+        private List<string> ObtenerUnidad()
+        {
+            return ObtenerLista("Unidad");
+        }
+        private List<string> ObtenerTemas()
+        {
+            List<string> noCursados = ObtenerLista("Tema");
             List<string> list = new List<string>();
-            foreach (DataRow dr in dt.Rows)
+
+            if (ultimoTema != null)
             {
-                if (!list.Contains(dr["Unidad"]))
-                {
-                    list.Add(dr["Unidad"].ToString());
-                }
+                list.Add(ultimoTema.Rows[0]["Tema"].ToString());
             }
+
+            foreach (string item in noCursados) list.Add(item);
             return list;
         }
-        private void C_Control_Load_1(object sender, EventArgs e)
+        private void Refrescar()
         {
-            dt = n_RegistroAvance.TemasSinAvanzar(asignacionID);
-            dataTable = n_RegistroAvance.TodosLosTemas(asignacionID);
-            if (dt != null)
+            temasNoCursados = n_RegistroAvance.TemasSinAvanzar(asignacionID);
+            ultimoTema = n_RegistroAvance.UltimoTema(asignacionID);
+            if (temasNoCursados != null)
             {
-                List<string> list = ObtenerUnidad(dataTable);
-                List<string> vs = ObtenerCapitulo(dataTable);
-                foreach (string item in list)
+                List<string> unidadlist = ObtenerUnidad();
+                List<string> capitulolist = ObtenerCapitulo();
+                List<string> temasList = ObtenerTemas();
+
+                cbUnidad.Items.Clear();
+                foreach (string item in unidadlist)
                 {
                     cbUnidad.Items.Add(item);
                 }
-                foreach (string item in vs)
+                cbCapitulo.Items.Clear();
+                foreach (string item in capitulolist)
                 {
                     cbCapitulo.Items.Add(item);
                 }
-                foreach (DataRow dr in dataTable.Rows)
+                cbTema.Items.Clear();
+                foreach (string item in temasList)
                 {
-                    cbTema.Items.Add(dr["Tema"]);
+                    cbTema.Items.Add(item);
                 }
 
-                cbTema.SelectedItem = dt.Rows[0]["Tema"];
-                cbCapitulo.SelectedItem = dt.Rows[0]["Capitulo"];
-                cbUnidad.SelectedItem = dt.Rows[0]["Unidad"];
+                cbTema.SelectedItem = temasNoCursados.Rows[0]["Tema"];
+                cbCapitulo.SelectedItem = temasNoCursados.Rows[0]["Capitulo"];
+                cbUnidad.SelectedItem = temasNoCursados.Rows[0]["Unidad"];
             }
+
             // rellenar lista de alumnos
             N_AlumnoCurso n_AlumnoCurso = new N_AlumnoCurso();
             DataTable dt_SubirAlumnosCurso = n_AlumnoCurso.Mostrar(asignacionID);
@@ -109,6 +126,10 @@ namespace CapaPresentacion
             {
                 dgvAlumnos.DataSource = dt_SubirAlumnosCurso;
             }
+        }
+        private void C_Control_Load_1(object sender, EventArgs e)
+        {
+            Refrescar();
         }
         private int idSilabo(DataTable dt1)
         {
@@ -139,8 +160,7 @@ namespace CapaPresentacion
         {
             if (cbUnidad.SelectedIndex > -1 && cbCapitulo.SelectedIndex > -1 && cbTema.SelectedIndex > -1)
             {
-                int IdSilabo = idSilabo(dataTable);
-                MessageBox.Show(dataTable.Rows.Count.ToString());
+                int IdSilabo = idSilabo(temasNoCursados);
                 if (IdSilabo == -1)
                 {
                     MessageBox.Show("Error al seleccionar");
@@ -151,7 +171,7 @@ namespace CapaPresentacion
                     n_RegistroAvance.ID_Silabo = IdSilabo;
                     n_RegistroAvance.Fecha = fecha;
                     n_RegistroAvance.Observacion = textBoxObservacion.Text;
-                    n_RegistroAvance.NroHoras = nroHoras(dataTable);
+                    n_RegistroAvance.NroHoras = nroHoras(temasNoCursados);
                     n_RegistroAvance.Guardar();                  
                     int IdAvance = n_RegistroAvance.IdRegistro(IdSilabo, fecha);
                     foreach (DataGridViewRow fila in dgvAlumnos.Rows)
@@ -164,6 +184,7 @@ namespace CapaPresentacion
                     }
                     MessageBox.Show("Guardado Correctamente");
                 }
+                Refrescar();
             }
             else
             {
@@ -174,8 +195,7 @@ namespace CapaPresentacion
         private void cbTema_SelectedIndexChanged(object sender, EventArgs e)
         {
             var value = cbTema.SelectedItem;
-            dataTable = n_RegistroAvance.TodosLosTemas(asignacionID);
-            foreach (DataRow dr in dataTable.Rows)
+            foreach (DataRow dr in temasNoCursados.Rows)
             {
                 if(dr["Tema"].ToString() == value.ToString())
                 {

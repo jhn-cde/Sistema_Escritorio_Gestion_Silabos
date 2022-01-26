@@ -65,6 +65,15 @@ namespace CapaDatos
 
             return conexion.executeNonQuery() == 1;
         }
+        public DataTable UltimoTema(int IdAsignacion)
+        {
+            string sql = "select S.ID, S.Unidad, S.Capitulo, S.Tema, S.NroHoras from TSilabo S inner JOIN TRegistroAvance R " +
+                "ON S.Id = R.ID_Silabo  where S.Asignacion = @IdAsignacion "+
+                "order by Fecha desc";
+            conexion.setComando(sql);
+            conexion.cmd.Parameters.AddWithValue("@IdAsignacion", IdAsignacion);
+            return conexion.executeReader();
+        }
         public DataTable TemasSinAvanzar(int IdAsignacion)
         {
             string sql = "select S.ID, S.Unidad, S.Capitulo, S.Tema, S.NroHoras from TSilabo S  Left JOIN TRegistroAvance R " +
