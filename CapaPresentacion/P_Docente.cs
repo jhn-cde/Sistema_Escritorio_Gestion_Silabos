@@ -32,7 +32,7 @@ namespace CapaPresentacion
             caja = new C_CajaTarjetas(asignaciones);
             caja.Location = new Point(5, 5);
             caja.Name = "cajaTarjetas";
-            caja.Size = new Size(600, 300);
+            caja.Size = new Size(612, 360);
             caja.Anchor = ((AnchorStyles)((((AnchorStyles.Top | AnchorStyles.Bottom)
             | AnchorStyles.Left)
             | AnchorStyles.Right)));
@@ -100,9 +100,9 @@ namespace CapaPresentacion
         }
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
-            P_Login login = new P_Login();
-            login.Show();
+            Application.Exit();
+            //P_Login login = new P_Login();
+            //login.Show();
         }
         #endregion
 

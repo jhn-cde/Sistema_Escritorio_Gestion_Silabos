@@ -97,10 +97,11 @@ namespace CapaPresentacion
                 {
                     cbTema.Items.Add(dr["Tema"]);
                 }
+
+                cbTema.SelectedItem = dt.Rows[0]["Tema"];
+                cbCapitulo.SelectedItem = dt.Rows[0]["Capitulo"];
+                cbUnidad.SelectedItem = dt.Rows[0]["Unidad"];
             }
-            cbTema.SelectedItem = dt.Rows[0]["Tema"];
-            cbCapitulo.SelectedItem = dt.Rows[0]["Capitulo"];
-            cbUnidad.SelectedItem = dt.Rows[0]["Unidad"];
             // rellenar lista de alumnos
             N_AlumnoCurso n_AlumnoCurso = new N_AlumnoCurso();
             DataTable dt_SubirAlumnosCurso = n_AlumnoCurso.Mostrar(asignacionID);

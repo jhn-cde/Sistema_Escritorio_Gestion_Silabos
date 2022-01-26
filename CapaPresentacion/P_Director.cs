@@ -212,7 +212,7 @@ namespace CapaPresentacion
         private void btnSalir_Click(object sender, EventArgs e)
         {
             //this.Parent.
-            this.Close();
+            Application.Exit();
         }
 
         private void P_Director_FormClosing(object sender, FormClosingEventArgs e)
