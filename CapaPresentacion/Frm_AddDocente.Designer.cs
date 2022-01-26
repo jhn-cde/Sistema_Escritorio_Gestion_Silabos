@@ -80,7 +80,7 @@ namespace CapaPresentacion
             // 
             // btn_agregarDocente
             // 
-            this.btn_agregarDocente.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(234)))), ((int)(((byte)(0)))));
+            this.btn_agregarDocente.BackColor = System.Drawing.Color.RoyalBlue;
             this.btn_agregarDocente.FlatAppearance.BorderSize = 0;
             this.btn_agregarDocente.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_agregarDocente.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
