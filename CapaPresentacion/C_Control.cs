@@ -16,11 +16,11 @@ namespace CapaPresentacion
 {
     public partial class C_Control : UserControl
     {
-        protected Conexion aConexion;
         N_Asistencia n_Asistencia = new N_Asistencia();
         N_RegistroAvance n_RegistroAvance = new N_RegistroAvance();
-        DataTable dt;
-        DataTable dataTable;
+        DataTable temasNoCursados;
+        DataTable ultimoTema;
+        DataTable dias;
         //Declarar un delegate y Event. StatusUpdate
         public delegate void StatusUpdateHandler(object sender, EventArgs e);
         public event StatusUpdateHandler OnUpdateStatus;
@@ -53,54 +53,72 @@ namespace CapaPresentacion
         {
 
         }
-        private List<string> ObtenerCapitulo(DataTable dt)
+        private List<string> ObtenerLista(string texto, DataTable dt = null)
         {
+            if (dt == null)
+            {
+                dt = temasNoCursados;
+            }
             List<string> list = new List<string>();
             foreach (DataRow dr in dt.Rows)
             {
-                if (!list.Contains(dr["Capitulo"]))
-                {
-                    list.Add(dr["Capitulo"].ToString());
-                }
+                string item = dr[texto].ToString();
+                if (!list.Contains(item)) list.Add(item);
             }
             return list;
         }
-        private List<string> ObtenerUnidad(DataTable dt)
+        private List<string> ObtenerCapitulo()
         {
+            return ObtenerLista("Capitulo");
+        }
+        private List<string> ObtenerUnidad()
+        {
+            return ObtenerLista("Unidad");
+        }
+        private List<string> ObtenerTemas()
+        {
+            List<string> noCursados = ObtenerLista("Tema");
             List<string> list = new List<string>();
-            foreach (DataRow dr in dt.Rows)
+
+            if (ultimoTema != null)
             {
-                if (!list.Contains(dr["Unidad"]))
-                {
-                    list.Add(dr["Unidad"].ToString());
-                }
+                list.Add(ultimoTema.Rows[0]["Tema"].ToString());
             }
+
+            foreach (string item in noCursados) list.Add(item);
             return list;
         }
-        private void C_Control_Load_1(object sender, EventArgs e)
+        private void Refrescar()
         {
-            dt = n_RegistroAvance.TemasSinAvanzar(asignacionID);
-            dataTable = n_RegistroAvance.TodosLosTemas(asignacionID);
-            if (dt != null)
+            temasNoCursados = n_RegistroAvance.TemasSinAvanzar(asignacionID);
+            ultimoTema = n_RegistroAvance.UltimoTema(asignacionID);
+            if (temasNoCursados != null)
             {
-                List<string> list = ObtenerUnidad(dataTable);
-                List<string> vs = ObtenerCapitulo(dataTable);
-                foreach (string item in list)
+                List<string> unidadlist = ObtenerUnidad();
+                List<string> capitulolist = ObtenerCapitulo();
+                List<string> temasList = ObtenerTemas();
+
+                cbUnidad.Items.Clear();
+                foreach (string item in unidadlist)
                 {
                     cbUnidad.Items.Add(item);
                 }
-                foreach (string item in vs)
+                cbCapitulo.Items.Clear();
+                foreach (string item in capitulolist)
                 {
                     cbCapitulo.Items.Add(item);
                 }
-                foreach (DataRow dr in dataTable.Rows)
+                cbTema.Items.Clear();
+                foreach (string item in temasList)
                 {
-                    cbTema.Items.Add(dr["Tema"]);
+                    cbTema.Items.Add(item);
                 }
+
+                cbTema.SelectedItem = temasNoCursados.Rows[0]["Tema"];
+                cbCapitulo.SelectedItem = temasNoCursados.Rows[0]["Capitulo"];
+                cbUnidad.SelectedItem = temasNoCursados.Rows[0]["Unidad"];
             }
-            cbTema.SelectedItem = dt.Rows[0]["Tema"];
-            cbCapitulo.SelectedItem = dt.Rows[0]["Capitulo"];
-            cbUnidad.SelectedItem = dt.Rows[0]["Unidad"];
+
             // rellenar lista de alumnos
             N_AlumnoCurso n_AlumnoCurso = new N_AlumnoCurso();
             DataTable dt_SubirAlumnosCurso = n_AlumnoCurso.Mostrar(asignacionID);
@@ -108,6 +126,20 @@ namespace CapaPresentacion
             {
                 dgvAlumnos.DataSource = dt_SubirAlumnosCurso;
             }
+
+            // Rellenar dias de avance
+            DataRow Semestre = new N_Semestre().MostrarUltimo();
+            dias = new N_Dia().DiasAsignacion(asignacionID.ToString());
+            DateTime minDate = Convert.ToDateTime(Semestre["Fecha_inicio"].ToString());
+            DateTime maxDate = Convert.ToDateTime(Semestre["Fecha_fin"].ToString());
+            dateTimePicker.MinDate = minDate;
+            dateTimePicker.MaxDate = maxDate;
+
+            dateTimePicker.Value = siguienteClase();
+        }
+        private void C_Control_Load_1(object sender, EventArgs e)
+        {
+            Refrescar();
         }
         private int idSilabo(DataTable dt1)
         {
@@ -138,8 +170,7 @@ namespace CapaPresentacion
         {
             if (cbUnidad.SelectedIndex > -1 && cbCapitulo.SelectedIndex > -1 && cbTema.SelectedIndex > -1)
             {
-                int IdSilabo = idSilabo(dataTable);
-                MessageBox.Show(dataTable.Rows.Count.ToString());
+                int IdSilabo = idSilabo(temasNoCursados);
                 if (IdSilabo == -1)
                 {
                     MessageBox.Show("Error al seleccionar");
@@ -148,21 +179,30 @@ namespace CapaPresentacion
                 {
                     DateTime fecha = DateTime.Now;
                     n_RegistroAvance.ID_Silabo = IdSilabo;
-                    n_RegistroAvance.Fecha = fecha;
+                    n_RegistroAvance.Fecha = dateTimePicker.Value;
+                    n_RegistroAvance.FechaRegistro = fecha;
                     n_RegistroAvance.Observacion = textBoxObservacion.Text;
-                    n_RegistroAvance.NroHoras = nroHoras(dataTable);
+                    n_RegistroAvance.NroHoras = nroHoras(temasNoCursados);
                     n_RegistroAvance.Guardar();                  
                     int IdAvance = n_RegistroAvance.IdRegistro(IdSilabo, fecha);
-                    foreach (DataGridViewRow fila in dgvAlumnos.Rows)
+                    if(IdAvance != -1)
                     {
-                        DataGridViewCheckBoxCell b = (DataGridViewCheckBoxCell)fila.Cells["Asistencia"];
-                        n_Asistencia.ID_Registro = IdAvance;
-                        n_Asistencia.CodAlumno = fila.Cells[2].Value.ToString();
-                        n_Asistencia.Asistio = Convert.ToBoolean(b.Value);
-                        n_Asistencia.Guardar(); 
+                        foreach (DataGridViewRow fila in dgvAlumnos.Rows)
+                        {
+                            DataGridViewCheckBoxCell b = (DataGridViewCheckBoxCell)fila.Cells["Asistencia"];
+                            n_Asistencia.ID_Registro = IdAvance;
+                            n_Asistencia.CodAlumno = fila.Cells[2].Value.ToString();
+                            n_Asistencia.Asistio = Convert.ToBoolean(b.Value);
+                            n_Asistencia.Guardar();
+                        }
+                        MessageBox.Show("Guardado Correctamente");
                     }
-                    MessageBox.Show("Guardado Correctamente");
+                    else
+                    {
+                        MessageBox.Show("Error!!!");
+                    }
                 }
+                Refrescar();
             }
             else
             {
@@ -173,8 +213,7 @@ namespace CapaPresentacion
         private void cbTema_SelectedIndexChanged(object sender, EventArgs e)
         {
             var value = cbTema.SelectedItem;
-            dataTable = n_RegistroAvance.TodosLosTemas(asignacionID);
-            foreach (DataRow dr in dataTable.Rows)
+            foreach (DataRow dr in temasNoCursados.Rows)
             {
                 if(dr["Tema"].ToString() == value.ToString())
                 {
@@ -182,6 +221,74 @@ namespace CapaPresentacion
                     cbUnidad.SelectedItem = dr["Unidad"];
                 }
             }
+        }
+        private DateTime siguienteClase()
+        {
+            DateTime now = DateTime.Now;
+            string hoy = diaEspañol(now.DayOfWeek.ToString());
+
+            bool valido = false;
+            while (!valido)
+            {
+                foreach (DataRow row in dias.Rows)
+                {
+                    if (row["Dia"].ToString().ToUpper() == hoy)
+                    {
+                        valido = true;
+                        return now;
+                    }
+                }
+
+                now = now.AddDays(1);
+                hoy = diaEspañol(now.DayOfWeek.ToString());
+            }
+            return now;
+        }
+        private string diaEspañol(string day)
+        {
+            day = day.ToLower();
+            string dia = "-1";
+            if (day == "monday" || day == "lunes")
+                dia = "lunes";
+            else if (day == "tuesday" || day == "martes")
+                dia = "martes";
+            else if (day == "wednesday" || day == "miercoles")
+                dia = "miercoles";
+            else if (day == "thursday" || day == "jueves")
+                dia = "jueves";
+            else if (day == "friday" || day == "viernes")
+                dia = "viernes";
+            else if (day == "saturday" || day == "sabado")
+                dia = "sabado";
+            else if (day == "sunday" || day == "domingo")
+                dia = "domingo";
+            return dia.ToUpper();
+        }
+        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void dateTimePicker_CloseUp(object sender, EventArgs e)
+        {
+            string day = dateTimePicker.Value.DayOfWeek.ToString();
+            string dia = diaEspañol(day);
+            bool valido = false;
+            string diasString = "";
+
+            foreach (DataRow row in dias.Rows)
+            {
+                diasString += " " + row["Dia"].ToString();
+                if (row["Dia"].ToString().ToUpper() == dia)
+                {
+                    valido = true;
+                }
+            }
+            if (!valido)
+            {
+                MessageBox.Show("Error! elija entre:" + diasString);
+                dateTimePicker.Value = siguienteClase();
+            }
+            //ssageBox.Show("You are in the DateTimePicker.CloseUp event.");
         }
     }
 }

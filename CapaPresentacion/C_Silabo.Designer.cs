@@ -55,7 +55,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(666, 46);
+            this.panel1.Size = new System.Drawing.Size(666, 91);
             this.panel1.TabIndex = 4;
             // 
             // btnAtras
@@ -64,9 +64,9 @@
             this.btnAtras.Cursor = System.Windows.Forms.Cursors.Default;
             this.btnAtras.FlatAppearance.BorderSize = 0;
             this.btnAtras.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnAtras.Location = new System.Drawing.Point(0, 15);
+            this.btnAtras.Location = new System.Drawing.Point(0, 0);
             this.btnAtras.Name = "btnAtras";
-            this.btnAtras.Size = new System.Drawing.Size(75, 23);
+            this.btnAtras.Size = new System.Drawing.Size(80, 80);
             this.btnAtras.TabIndex = 15;
             this.btnAtras.Text = "Atras";
             this.btnAtras.UseVisualStyleBackColor = false;
@@ -80,7 +80,7 @@
             this.btnAgregar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAgregar.ForeColor = System.Drawing.Color.Black;
             this.btnAgregar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnAgregar.Location = new System.Drawing.Point(418, 16);
+            this.btnAgregar.Location = new System.Drawing.Point(418, 32);
             this.btnAgregar.Name = "btnAgregar";
             this.btnAgregar.Size = new System.Drawing.Size(74, 27);
             this.btnAgregar.TabIndex = 14;
@@ -97,7 +97,7 @@
             this.btnEliminar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminar.ForeColor = System.Drawing.Color.Black;
             this.btnEliminar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEliminar.Location = new System.Drawing.Point(578, 16);
+            this.btnEliminar.Location = new System.Drawing.Point(578, 32);
             this.btnEliminar.Name = "btnEliminar";
             this.btnEliminar.Size = new System.Drawing.Size(74, 26);
             this.btnEliminar.TabIndex = 13;
@@ -114,7 +114,7 @@
             this.btnEditar.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditar.ForeColor = System.Drawing.Color.Black;
             this.btnEditar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnEditar.Location = new System.Drawing.Point(498, 16);
+            this.btnEditar.Location = new System.Drawing.Point(498, 32);
             this.btnEditar.Name = "btnEditar";
             this.btnEditar.Size = new System.Drawing.Size(74, 26);
             this.btnEditar.TabIndex = 12;
@@ -131,9 +131,9 @@
             this.btnGuardar.ForeColor = System.Drawing.Color.Black;
             this.btnGuardar.Image = global::CapaPresentacion.Properties.Resources.diskette_24;
             this.btnGuardar.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.btnGuardar.Location = new System.Drawing.Point(212, 11);
+            this.btnGuardar.Location = new System.Drawing.Point(197, 30);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(149, 31);
+            this.btnGuardar.Size = new System.Drawing.Size(100, 31);
             this.btnGuardar.TabIndex = 8;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -145,9 +145,9 @@
             this.btnSubirSilabo.BackColor = System.Drawing.Color.White;
             this.btnSubirSilabo.Cursor = System.Windows.Forms.Cursors.Hand;
             this.btnSubirSilabo.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSubirSilabo.Location = new System.Drawing.Point(94, 12);
+            this.btnSubirSilabo.Location = new System.Drawing.Point(94, 31);
             this.btnSubirSilabo.Name = "btnSubirSilabo";
-            this.btnSubirSilabo.Size = new System.Drawing.Size(112, 30);
+            this.btnSubirSilabo.Size = new System.Drawing.Size(97, 30);
             this.btnSubirSilabo.TabIndex = 0;
             this.btnSubirSilabo.Text = "Subir Sílabo";
             this.btnSubirSilabo.UseVisualStyleBackColor = false;
@@ -155,6 +155,7 @@
             // 
             // panel2
             // 
+            this.panel2.BackColor = System.Drawing.Color.White;
             this.panel2.Controls.Add(this.dgvSubirSilabo);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
@@ -172,9 +173,9 @@
             this.dgvSubirSilabo.BackgroundColor = System.Drawing.Color.White;
             this.dgvSubirSilabo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSubirSilabo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSubirSilabo.Location = new System.Drawing.Point(0, 48);
+            this.dgvSubirSilabo.Location = new System.Drawing.Point(0, 97);
             this.dgvSubirSilabo.Name = "dgvSubirSilabo";
-            this.dgvSubirSilabo.Size = new System.Drawing.Size(666, 335);
+            this.dgvSubirSilabo.Size = new System.Drawing.Size(666, 286);
             this.dgvSubirSilabo.TabIndex = 0;
             this.dgvSubirSilabo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvSubirSilabo_CellContentClick);
             // 

@@ -33,5 +33,10 @@ namespace CapaNegocio
             }
             return Dias;
         }
+        public DataTable DiasAsignacion(string Texto)
+        {
+            DataTable dt = d_Dia.DiasAsignacion(Texto);
+            return dt;
+        }
     }
 }

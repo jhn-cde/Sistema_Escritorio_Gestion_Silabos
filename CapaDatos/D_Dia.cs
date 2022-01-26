@@ -36,6 +36,20 @@ namespace CapaDatos
 
             return conexion.executeReader();
         }
+        public DataTable DiasAsignacion(string Texto)
+        {
+            //Cadena de texto de Consulta a la BD
+            string query = "select TD.Dia, TD.HR_fin - TD.HR_inicio as nroHoras " +
+                           "from TDia TD inner " +
+                           "join TAsignacion TA on TD.Asignacion = TA.ID " +
+                           "where TA.ID = 113";
+
+            // Ejecutar la consulta
+            conexion.setComando(query);
+            conexion.cmd.Parameters.AddWithValue("@Texto", Texto);
+
+            return conexion.executeReader();
+        }
         public bool Elminar(string Id)
         {
             string sql = "DELETE FROM TDia WHERE ID = @ID";

@@ -17,13 +17,14 @@ namespace CapaDatos
         // Metodos CRUD
         public bool Agregar(E_RegistroAvance pRegistro)
         {
-            string sql = "INSERT INTO dbo.TRegistroAvance (ID_Silabo, Fecha, Observacion, NroHoras)" +
-                                    "VALUES (@ID_Silabo, @Fecha, @Observacion, @nroHoras)";
+            string sql = "INSERT INTO dbo.TRegistroAvance (ID_Silabo, Fecha, NroHoras, FechaRegistro, Observacion) " +
+                                    "VALUES (@ID_Silabo, @Fecha, @nroHoras, @FechaRegistro, @Observacion)";
             conexion.setComando(sql);
             conexion.cmd.Parameters.AddWithValue("@ID_Silabo", pRegistro.ID_Silabo);
             conexion.cmd.Parameters.AddWithValue("@Fecha", pRegistro.Fecha);
             conexion.cmd.Parameters.AddWithValue("@Observacion", pRegistro.Observacion);
             conexion.cmd.Parameters.AddWithValue("@nroHoras", pRegistro.NroHoras);
+            conexion.cmd.Parameters.AddWithValue("@FechaRegistro", pRegistro.FechaRegistro);
 
             return conexion.executeNonQuery() == 1;
         }
@@ -48,13 +49,22 @@ namespace CapaDatos
 
             return conexion.executeReader();
         }
+        public DataTable BuscarID(int pID)
+        {
+            string sql = "Select * from TRegistroAvance where ID = @ID";
+            conexion.setComando(sql);
+            conexion.cmd.Parameters.AddWithValue("@ID", pID);
+
+            return conexion.executeReader();
+        }
         public bool Editar(E_RegistroAvance pRegistro)
         {
-            string sql = "UPDATE dbo.TRegistroAvance SET Fecha = @Fecha, Observacion = @Observacion WHERE ID = @ID";
+            string sql = "UPDATE dbo.TRegistroAvance SET Fecha = @Fecha, Observacion = @Observacion, FechaRegistro = @FechaRegistro WHERE ID = @ID";
             conexion.setComando(sql);
             conexion.cmd.Parameters.AddWithValue("@ID", pRegistro.ID);
             conexion.cmd.Parameters.AddWithValue("@Fecha", pRegistro.Fecha);
             conexion.cmd.Parameters.AddWithValue("@Observacion", pRegistro.Observacion);
+            conexion.cmd.Parameters.AddWithValue("@FechaRegistro", pRegistro.FechaRegistro);
             return conexion.executeNonQuery() == 1;
         }
         public bool Eliminar(string ID)
@@ -64,6 +74,15 @@ namespace CapaDatos
             conexion.cmd.Parameters.AddWithValue("@ID", ID);
 
             return conexion.executeNonQuery() == 1;
+        }
+        public DataTable UltimoTema(int IdAsignacion)
+        {
+            string sql = "select S.ID, S.Unidad, S.Capitulo, S.Tema, S.NroHoras from TSilabo S inner JOIN TRegistroAvance R " +
+                "ON S.Id = R.ID_Silabo  where S.Asignacion = @IdAsignacion "+
+                "order by Fecha desc";
+            conexion.setComando(sql);
+            conexion.cmd.Parameters.AddWithValue("@IdAsignacion", IdAsignacion);
+            return conexion.executeReader();
         }
         public DataTable TemasSinAvanzar(int IdAsignacion)
         {
@@ -82,7 +101,7 @@ namespace CapaDatos
         }
         public DataTable ObtenerRegistro(int idSilabo, DateTime fecha)
         {
-            string sql = "select * from TRegistroAvance where ID_Silabo = @IdSilabo and Fecha = @Fecha";
+            string sql = "select * from TRegistroAvance where ID_Silabo = @IdSilabo and FechaRegistro = @Fecha";
             conexion.setComando(sql);
             conexion.cmd.Parameters.AddWithValue("@IdSilabo", idSilabo);
             conexion.cmd.Parameters.AddWithValue("@Fecha", fecha);

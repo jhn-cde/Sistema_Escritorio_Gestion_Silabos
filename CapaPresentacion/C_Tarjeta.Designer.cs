@@ -40,12 +40,12 @@
             // btnControl
             // 
             this.btnControl.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(68)))), ((int)(((byte)(170)))), ((int)(((byte)(211)))));
+            this.btnControl.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.btnControl.FlatAppearance.BorderSize = 0;
             this.btnControl.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnControl.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnControl.ForeColor = System.Drawing.Color.White;
-            this.btnControl.Location = new System.Drawing.Point(194, 122);
+            this.btnControl.Location = new System.Drawing.Point(190, 122);
             this.btnControl.Name = "btnControl";
             this.btnControl.Size = new System.Drawing.Size(80, 25);
             this.btnControl.TabIndex = 1;
@@ -56,12 +56,12 @@
             // btnSilabo
             // 
             this.btnSilabo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnSilabo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(234)))), ((int)(((byte)(0)))));
+            this.btnSilabo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnSilabo.FlatAppearance.BorderSize = 0;
             this.btnSilabo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSilabo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSilabo.ForeColor = System.Drawing.Color.White;
-            this.btnSilabo.Location = new System.Drawing.Point(13, 122);
+            this.btnSilabo.Location = new System.Drawing.Point(10, 122);
             this.btnSilabo.Name = "btnSilabo";
             this.btnSilabo.Size = new System.Drawing.Size(80, 25);
             this.btnSilabo.TabIndex = 2;
@@ -111,14 +111,14 @@
             // btnAlumno
             // 
             this.btnAlumno.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnAlumno.BackColor = System.Drawing.Color.Green;
+            this.btnAlumno.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnAlumno.FlatAppearance.BorderSize = 0;
             this.btnAlumno.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAlumno.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAlumno.ForeColor = System.Drawing.Color.White;
-            this.btnAlumno.Location = new System.Drawing.Point(99, 122);
+            this.btnAlumno.Location = new System.Drawing.Point(100, 122);
             this.btnAlumno.Name = "btnAlumno";
-            this.btnAlumno.Size = new System.Drawing.Size(89, 25);
+            this.btnAlumno.Size = new System.Drawing.Size(80, 25);
             this.btnAlumno.TabIndex = 4;
             this.btnAlumno.Text = "ALUMNOS";
             this.btnAlumno.UseVisualStyleBackColor = false;
