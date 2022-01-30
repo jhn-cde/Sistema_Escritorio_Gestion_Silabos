@@ -214,7 +214,7 @@
             // 
             this.dgvCarga.AllowUserToAddRows = false;
             this.dgvCarga.AllowUserToDeleteRows = false;
-            this.dgvCarga.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvCarga.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dgvCarga.BackgroundColor = System.Drawing.Color.White;
             this.dgvCarga.BorderStyle = System.Windows.Forms.BorderStyle.None;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -241,6 +241,7 @@
             this.dgvCarga.Name = "dgvCarga";
             this.dgvCarga.ReadOnly = true;
             this.dgvCarga.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvCarga.RowHeadersVisible = false;
             this.dgvCarga.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvCarga.Size = new System.Drawing.Size(800, 400);
             this.dgvCarga.TabIndex = 0;

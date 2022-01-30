@@ -186,51 +186,57 @@ namespace CapaPresentacion
             this.c_Carga1.TabIndex = 2;
             this.c_Carga1.SendToBack();
         }
+        private void defaultBtn()
+        {
+            this.btnDocentes.BackColor = Color.Transparent;
+            this.btnDocentes.ForeColor = Color.White;
+            this.btnDocentes.FlatAppearance.BorderSize = 1;
+            this.btnCarga.BackColor = Color.Transparent;
+            this.btnCarga.ForeColor = Color.White;
+            this.btnCarga.FlatAppearance.BorderSize = 1;
+            this.btnCursos.BackColor = Color.Transparent;
+            this.btnCursos.ForeColor = Color.White;
+            this.btnCursos.FlatAppearance.BorderSize = 1;
+        }
         #endregion
         private void btnDocentes_Click(object sender, EventArgs e)
         {
+            defaultBtn();
             this.c_CRUDDocente1.BringToFront();
             this.c_CRUDDocente1.Enabled = true;
             this.btnDocentes.BackColor = Color.White;
             this.btnDocentes.ForeColor = Color.Black;
-            this.btnCarga.BackColor = Color.Transparent;
-            this.btnCarga.ForeColor = Color.White;
-            this.btnCursos.BackColor = Color.Transparent;
-            this.btnCursos.ForeColor = Color.White;
+            this.btnDocentes.FlatAppearance.BorderSize = 0;
         }
 
         private void btnCursos_Click(object sender, EventArgs e)
         {
+            defaultBtn();
             this.c_CRUDCurso1.BringToFront();
             this.c_CRUDCurso1.Enabled = true;
             this.btnCursos.BackColor = Color.White;
             this.btnCursos.ForeColor = Color.Black;
-            this.btnCarga.BackColor = Color.Transparent;
-            this.btnCarga.ForeColor = Color.White;
-            this.btnDocentes.BackColor = Color.Transparent;
-            this.btnDocentes.ForeColor = Color.White;
+            this.btnCursos.FlatAppearance.BorderSize = 0;
         }
 
         private void btnCarga_Click(object sender, EventArgs e)
         {
+            defaultBtn();
             this.c_Carga1.BringToFront();
             this.c_CRUDCurso1.Enabled = false;
             this.c_CRUDDocente1.Enabled = false;
             this.btnCarga.BackColor = Color.White;
             this.btnCarga.ForeColor = Color.Black;
-            this.btnCursos.BackColor = Color.Transparent;
-            this.btnCursos.ForeColor = Color.White;
-            this.btnDocentes.BackColor = Color.Transparent;
-            this.btnDocentes.ForeColor = Color.White;
+            this.btnCarga.FlatAppearance.BorderSize = 0;
         }
 
         private void P_Director_Load(object sender, EventArgs e)
         {
             Init_C_CRUD_Curso();
             Init_C_Carga();
-
             this.btnDocentes.BackColor = Color.White;
             this.btnDocentes.ForeColor = Color.Black;
+            this.btnDocentes.FlatAppearance.BorderSize = 0;
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
