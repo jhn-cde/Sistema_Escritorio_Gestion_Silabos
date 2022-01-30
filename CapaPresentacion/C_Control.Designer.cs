@@ -28,8 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -48,8 +48,8 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.dgvAlumnos = new System.Windows.Forms.DataGridView();
-            this.Asistencia = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panelLine = new System.Windows.Forms.Panel();
+            this.Asistencia = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -259,25 +259,25 @@
             this.dgvAlumnos.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAlumnos.BackgroundColor = System.Drawing.Color.White;
             this.dgvAlumnos.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            dataGridViewCellStyle23.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(234)))), ((int)(((byte)(0)))));
-            dataGridViewCellStyle23.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle23.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle23.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(170)))), ((int)(((byte)(211)))));
-            dataGridViewCellStyle23.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle23.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvAlumnos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle23;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(234)))), ((int)(((byte)(0)))));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(170)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvAlumnos.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvAlumnos.ColumnHeadersHeight = 29;
             this.dgvAlumnos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Asistencia});
-            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle24.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(170)))), ((int)(((byte)(211)))));
-            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvAlumnos.DefaultCellStyle = dataGridViewCellStyle24;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(60)))), ((int)(((byte)(170)))), ((int)(((byte)(211)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvAlumnos.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvAlumnos.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(240)))), ((int)(((byte)(240)))));
             this.dgvAlumnos.Location = new System.Drawing.Point(19, 2);
             this.dgvAlumnos.MultiSelect = false;
@@ -288,12 +288,6 @@
             this.dgvAlumnos.Size = new System.Drawing.Size(760, 297);
             this.dgvAlumnos.TabIndex = 0;
             // 
-            // Asistencia
-            // 
-            this.Asistencia.HeaderText = "Asistio";
-            this.Asistencia.MinimumWidth = 6;
-            this.Asistencia.Name = "Asistencia";
-            // 
             // panelLine
             // 
             this.panelLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -303,6 +297,14 @@
             this.panelLine.Name = "panelLine";
             this.panelLine.Size = new System.Drawing.Size(780, 1);
             this.panelLine.TabIndex = 4;
+            // 
+            // Asistencia
+            // 
+            this.Asistencia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Asistencia.HeaderText = "Asistio";
+            this.Asistencia.MinimumWidth = 6;
+            this.Asistencia.Name = "Asistencia";
+            this.Asistencia.Width = 43;
             // 
             // C_Control
             // 
@@ -344,8 +346,8 @@
         private System.Windows.Forms.Panel panelLine;
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.DataGridView dgvAlumnos;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Asistencia;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Asistencia;
     }
 }
