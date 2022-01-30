@@ -92,7 +92,7 @@ namespace CapaPresentacion
 
                 textUsuario.Text = "USUARIO";
                 textUsuario.ForeColor = Color.DarkGray;
-                textContraseña.Text = "CONTRASEÑA";
+                textContraseña.Text = " CONTRASEÑA";
                 textContraseña.ForeColor = Color.DarkGray;
                 textContraseña.UseSystemPasswordChar = false;
             }
@@ -102,12 +102,13 @@ namespace CapaPresentacion
         {
             this.Visible = true;
         }
-        private void Close_Click(object sender, EventArgs e)
+
+        private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
 
-        private void Minimize_Click(object sender, EventArgs e)
+        private void btnMinimize_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
