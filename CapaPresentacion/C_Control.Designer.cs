@@ -47,8 +47,8 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.panelPrincipal = new System.Windows.Forms.Panel();
             this.dgvAlumnos = new System.Windows.Forms.DataGridView();
-            this.Asistencia = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panelLine = new System.Windows.Forms.Panel();
+            this.Asistencia = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panelHeader.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -128,7 +128,6 @@
             this.dateTimePicker.Size = new System.Drawing.Size(126, 20);
             this.dateTimePicker.TabIndex = 6;
             this.dateTimePicker.CloseUp += new System.EventHandler(this.dateTimePicker_CloseUp);
-            this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
             // textBoxObservacion
             // 
@@ -195,8 +194,6 @@
             this.cbUnidad.Name = "cbUnidad";
             this.cbUnidad.Size = new System.Drawing.Size(296, 21);
             this.cbUnidad.TabIndex = 1;
-            this.cbUnidad.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.cbUnidad.Leave += new System.EventHandler(this.C_Control_Load);
             // 
             // label1
             // 
@@ -275,12 +272,6 @@
             this.dgvAlumnos.Size = new System.Drawing.Size(760, 297);
             this.dgvAlumnos.TabIndex = 0;
             // 
-            // Asistencia
-            // 
-            this.Asistencia.HeaderText = "Asistio";
-            this.Asistencia.MinimumWidth = 6;
-            this.Asistencia.Name = "Asistencia";
-            // 
             // panelLine
             // 
             this.panelLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -290,6 +281,14 @@
             this.panelLine.Name = "panelLine";
             this.panelLine.Size = new System.Drawing.Size(780, 1);
             this.panelLine.TabIndex = 4;
+            // 
+            // Asistencia
+            // 
+            this.Asistencia.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Asistencia.HeaderText = "Asistio";
+            this.Asistencia.MinimumWidth = 6;
+            this.Asistencia.Name = "Asistencia";
+            this.Asistencia.Width = 43;
             // 
             // C_Control
             // 
@@ -330,8 +329,8 @@
         private System.Windows.Forms.Panel panelLine;
         private System.Windows.Forms.Button btnAtras;
         private System.Windows.Forms.DataGridView dgvAlumnos;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Asistencia;
         private System.Windows.Forms.Button btnGuardar;
         private System.Windows.Forms.DateTimePicker dateTimePicker;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Asistencia;
     }
 }

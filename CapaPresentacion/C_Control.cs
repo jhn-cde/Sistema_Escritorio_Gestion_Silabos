@@ -8,7 +8,6 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
-using CapaDatos;
 using CapaNegocio;
 using CapaEntidades;
 
@@ -44,14 +43,6 @@ namespace CapaPresentacion
         private void btnAtras_Click(object sender, EventArgs e)
         {
             UpdateStatus();
-        }
-        private void C_Control_Load(object sender, EventArgs e)
-        {
-           
-        }
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
         private List<string> ObtenerLista(string texto, DataTable dt = null)
         {
@@ -131,7 +122,7 @@ namespace CapaPresentacion
             DataRow Semestre = new N_Semestre().MostrarUltimo();
             dias = new N_Dia().DiasAsignacion(asignacionID.ToString());
             DateTime minDate = Convert.ToDateTime(Semestre["Fecha_inicio"].ToString());
-            DateTime maxDate = Convert.ToDateTime(Semestre["Fecha_fin"].ToString());
+            DateTime maxDate = DateTime.Now;
             dateTimePicker.MinDate = minDate;
             dateTimePicker.MaxDate = maxDate;
 
@@ -239,7 +230,7 @@ namespace CapaPresentacion
                     }
                 }
 
-                now = now.AddDays(1);
+                now = now.AddDays(-1);
                 hoy = diaEspañol(now.DayOfWeek.ToString());
             }
             return now;
@@ -263,9 +254,6 @@ namespace CapaPresentacion
             else if (day == "sunday" || day == "domingo")
                 dia = "domingo";
             return dia.ToUpper();
-        }
-        private void dateTimePicker_ValueChanged(object sender, EventArgs e)
-        {
         }
 
         private void dateTimePicker_CloseUp(object sender, EventArgs e)
