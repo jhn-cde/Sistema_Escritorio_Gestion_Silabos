@@ -169,12 +169,11 @@ namespace CapaPresentacion
             // 
             // btnCarga
             // 
-            this.btnCarga.BackColor = System.Drawing.Color.White;
-            this.btnCarga.FlatAppearance.BorderSize = 0;
+            this.btnCarga.BackColor = System.Drawing.Color.Transparent;
             this.btnCarga.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnCarga.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCarga.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCarga.ForeColor = System.Drawing.Color.Black;
+            this.btnCarga.ForeColor = System.Drawing.Color.White;
             this.btnCarga.Location = new System.Drawing.Point(0, 95);
             this.btnCarga.Name = "btnCarga";
             this.btnCarga.Size = new System.Drawing.Size(200, 40);
@@ -185,12 +184,11 @@ namespace CapaPresentacion
             // 
             // btnCursos
             // 
-            this.btnCursos.BackColor = System.Drawing.Color.White;
-            this.btnCursos.FlatAppearance.BorderSize = 0;
+            this.btnCursos.BackColor = System.Drawing.Color.Transparent;
             this.btnCursos.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnCursos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnCursos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCursos.ForeColor = System.Drawing.Color.Black;
+            this.btnCursos.ForeColor = System.Drawing.Color.White;
             this.btnCursos.Location = new System.Drawing.Point(0, 55);
             this.btnCursos.Name = "btnCursos";
             this.btnCursos.Size = new System.Drawing.Size(200, 40);
@@ -201,12 +199,11 @@ namespace CapaPresentacion
             // 
             // btnDocentes
             // 
-            this.btnDocentes.BackColor = System.Drawing.Color.White;
-            this.btnDocentes.FlatAppearance.BorderSize = 0;
+            this.btnDocentes.BackColor = System.Drawing.Color.Transparent;
             this.btnDocentes.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
             this.btnDocentes.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDocentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDocentes.ForeColor = System.Drawing.Color.Black;
+            this.btnDocentes.ForeColor = System.Drawing.Color.White;
             this.btnDocentes.Location = new System.Drawing.Point(0, 15);
             this.btnDocentes.Name = "btnDocentes";
             this.btnDocentes.Size = new System.Drawing.Size(200, 40);
@@ -286,7 +283,6 @@ namespace CapaPresentacion
             this.panelMain.Padding = new System.Windows.Forms.Padding(10, 0, 7, 7);
             this.panelMain.Size = new System.Drawing.Size(600, 420);
             this.panelMain.TabIndex = 5;
-            this.panelMain.Paint += new System.Windows.Forms.PaintEventHandler(this.panelMain_Paint);
             // 
             // P_Director
             // 
@@ -304,6 +300,7 @@ namespace CapaPresentacion
             this.Text = "P_ControlDirector";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.P_Director_FormClosing);
+            this.Load += new System.EventHandler(this.P_Director_Load);
             this.panelTop.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);

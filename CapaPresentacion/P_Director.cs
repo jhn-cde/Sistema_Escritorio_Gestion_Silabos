@@ -26,8 +26,6 @@ namespace CapaPresentacion
         {
             InitializeComponent();
             Init_C_CRUD_Docente();
-            Init_C_CRUD_Curso();
-            Init_C_Carga();
         }
 
         #region funciones para abrir, cerrar, minimizar mover y cambiar tamaño de form
@@ -81,9 +79,7 @@ namespace CapaPresentacion
         #region min,max, close
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
-            P_Login login = new P_Login();
-            login.Show();
+            Application.Exit();
         }
 
         private void btnMaximize_Click(object sender, EventArgs e)
@@ -196,8 +192,11 @@ namespace CapaPresentacion
             this.c_CRUDDocente1.BringToFront();
             this.c_CRUDDocente1.Enabled = true;
             this.btnDocentes.BackColor = Color.White;
-            this.btnCarga.BackColor = Color.FromArgb(68, 170, 211);
-            this.btnCursos.BackColor = Color.FromArgb(68, 170, 211);
+            this.btnDocentes.ForeColor = Color.Black;
+            this.btnCarga.BackColor = Color.Transparent;
+            this.btnCarga.ForeColor = Color.White;
+            this.btnCursos.BackColor = Color.Transparent;
+            this.btnCursos.ForeColor = Color.White;
         }
 
         private void btnCursos_Click(object sender, EventArgs e)
@@ -205,19 +204,11 @@ namespace CapaPresentacion
             this.c_CRUDCurso1.BringToFront();
             this.c_CRUDCurso1.Enabled = true;
             this.btnCursos.BackColor = Color.White;
-            this.btnCarga.BackColor = Color.FromArgb(68, 170, 211);
-            this.btnDocentes.BackColor = Color.FromArgb(68, 170, 211);
-        }
-
-        private void btnSalir_Click(object sender, EventArgs e)
-        {
-            //this.Parent.
-            Application.Exit();
-        }
-
-        private void P_Director_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Console.WriteLine("closing");
+            this.btnCursos.ForeColor = Color.Black;
+            this.btnCarga.BackColor = Color.Transparent;
+            this.btnCarga.ForeColor = Color.White;
+            this.btnDocentes.BackColor = Color.Transparent;
+            this.btnDocentes.ForeColor = Color.White;
         }
 
         private void btnCarga_Click(object sender, EventArgs e)
@@ -226,13 +217,30 @@ namespace CapaPresentacion
             this.c_CRUDCurso1.Enabled = false;
             this.c_CRUDDocente1.Enabled = false;
             this.btnCarga.BackColor = Color.White;
-            this.btnCursos.BackColor = Color.FromArgb(68, 170, 211);
-            this.btnDocentes.BackColor = Color.FromArgb(68, 170, 211);
+            this.btnCarga.ForeColor = Color.Black;
+            this.btnCursos.BackColor = Color.Transparent;
+            this.btnCursos.ForeColor = Color.White;
+            this.btnDocentes.BackColor = Color.Transparent;
+            this.btnDocentes.ForeColor = Color.White;
         }
 
-        private void panelMain_Paint(object sender, PaintEventArgs e)
+        private void P_Director_Load(object sender, EventArgs e)
         {
+            Init_C_CRUD_Curso();
+            Init_C_Carga();
 
+            this.btnDocentes.BackColor = Color.White;
+            this.btnDocentes.ForeColor = Color.Black;
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void P_Director_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Console.WriteLine("closing");
         }
     }
 }
