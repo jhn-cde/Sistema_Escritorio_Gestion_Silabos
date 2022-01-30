@@ -129,7 +129,6 @@ namespace CapaPresentacion
         }
         private void C_Control_Load_1(object sender, EventArgs e)
         {
-
             Semestre = new N_Semestre().MostrarUltimo();
             dias = new N_Dia().DiasAsignacion(asignacionID.ToString());
             Refrescar();

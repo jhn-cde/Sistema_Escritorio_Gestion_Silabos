@@ -28,10 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAtras = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -40,23 +40,23 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnSubirSilabo = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.panelLine = new System.Windows.Forms.Panel();
+            this.panelResumen = new System.Windows.Forms.Panel();
+            this.labelTemaUltimo = new System.Windows.Forms.Label();
+            this.labelTemasRestantes = new System.Windows.Forms.Label();
+            this.labelTemasCursados = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.labelReporte = new System.Windows.Forms.Label();
+            this.chartAvance = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dgvSubirSilabo = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.panelResumen = new System.Windows.Forms.Panel();
-            this.panelLine = new System.Windows.Forms.Panel();
-            this.chartAvance = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.labelReporte = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.labelTemasCursados = new System.Windows.Forms.Label();
-            this.labelTemasRestantes = new System.Windows.Forms.Label();
-            this.labelTemaUltimo = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSubirSilabo)).BeginInit();
             this.panelResumen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartAvance)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSubirSilabo)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -181,6 +181,126 @@
             this.panel2.Size = new System.Drawing.Size(666, 383);
             this.panel2.TabIndex = 5;
             // 
+            // panelLine
+            // 
+            this.panelLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelLine.BackColor = System.Drawing.Color.Silver;
+            this.panelLine.Location = new System.Drawing.Point(53, 228);
+            this.panelLine.Name = "panelLine";
+            this.panelLine.Size = new System.Drawing.Size(560, 1);
+            this.panelLine.TabIndex = 5;
+            // 
+            // panelResumen
+            // 
+            this.panelResumen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelResumen.Controls.Add(this.labelTemaUltimo);
+            this.panelResumen.Controls.Add(this.labelTemasRestantes);
+            this.panelResumen.Controls.Add(this.labelTemasCursados);
+            this.panelResumen.Controls.Add(this.label3);
+            this.panelResumen.Controls.Add(this.label1);
+            this.panelResumen.Controls.Add(this.label2);
+            this.panelResumen.Controls.Add(this.labelReporte);
+            this.panelResumen.Controls.Add(this.chartAvance);
+            this.panelResumen.Location = new System.Drawing.Point(0, 240);
+            this.panelResumen.Name = "panelResumen";
+            this.panelResumen.Size = new System.Drawing.Size(666, 140);
+            this.panelResumen.TabIndex = 1;
+            // 
+            // labelTemaUltimo
+            // 
+            this.labelTemaUltimo.AutoSize = true;
+            this.labelTemaUltimo.Location = new System.Drawing.Point(122, 95);
+            this.labelTemaUltimo.Name = "labelTemaUltimo";
+            this.labelTemaUltimo.Size = new System.Drawing.Size(43, 13);
+            this.labelTemaUltimo.TabIndex = 7;
+            this.labelTemaUltimo.Text = "Tema 1";
+            // 
+            // labelTemasRestantes
+            // 
+            this.labelTemasRestantes.AutoSize = true;
+            this.labelTemasRestantes.Location = new System.Drawing.Point(122, 69);
+            this.labelTemasRestantes.Name = "labelTemasRestantes";
+            this.labelTemasRestantes.Size = new System.Drawing.Size(22, 13);
+            this.labelTemasRestantes.TabIndex = 6;
+            this.labelTemasRestantes.Text = "nro";
+            // 
+            // labelTemasCursados
+            // 
+            this.labelTemasCursados.AutoSize = true;
+            this.labelTemasCursados.Location = new System.Drawing.Point(122, 44);
+            this.labelTemasCursados.Name = "labelTemasCursados";
+            this.labelTemasCursados.Size = new System.Drawing.Size(22, 13);
+            this.labelTemasCursados.TabIndex = 5;
+            this.labelTemasCursados.Text = "nro";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(18, 95);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(69, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Ultimo Tema:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 69);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "Temas Restantes";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(18, 44);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(89, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Temas Cursados:";
+            // 
+            // labelReporte
+            // 
+            this.labelReporte.AutoSize = true;
+            this.labelReporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labelReporte.Location = new System.Drawing.Point(0, 0);
+            this.labelReporte.Name = "labelReporte";
+            this.labelReporte.Size = new System.Drawing.Size(163, 20);
+            this.labelReporte.TabIndex = 1;
+            this.labelReporte.Text = "Reporte de Avance";
+            // 
+            // chartAvance
+            // 
+            this.chartAvance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.Name = "ChartAvance";
+            this.chartAvance.ChartAreas.Add(chartArea1);
+            legend1.BackColor = System.Drawing.Color.Transparent;
+            legend1.DockedToChartArea = "ChartAvance";
+            legend1.Name = "Legend1";
+            this.chartAvance.Legends.Add(legend1);
+            this.chartAvance.Location = new System.Drawing.Point(326, 0);
+            this.chartAvance.Name = "chartAvance";
+            series1.BorderWidth = 3;
+            series1.ChartArea = "ChartAvance";
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.Color = System.Drawing.Color.Lime;
+            series1.Legend = "Legend1";
+            series1.Name = "Ideal";
+            series2.BorderWidth = 3;
+            series2.ChartArea = "ChartAvance";
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.Color = System.Drawing.Color.Blue;
+            series2.Legend = "Legend1";
+            series2.Name = "Real";
+            this.chartAvance.Series.Add(series1);
+            this.chartAvance.Series.Add(series2);
+            this.chartAvance.Size = new System.Drawing.Size(340, 140);
+            this.chartAvance.TabIndex = 0;
+            this.chartAvance.Text = "chart1";
+            // 
             // dgvSubirSilabo
             // 
             this.dgvSubirSilabo.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -201,121 +321,6 @@
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Excel Files|*.xlsx";
             // 
-            // panelResumen
-            // 
-            this.panelResumen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelResumen.Controls.Add(this.labelTemaUltimo);
-            this.panelResumen.Controls.Add(this.labelTemasRestantes);
-            this.panelResumen.Controls.Add(this.labelTemasCursados);
-            this.panelResumen.Controls.Add(this.label3);
-            this.panelResumen.Controls.Add(this.label1);
-            this.panelResumen.Controls.Add(this.label2);
-            this.panelResumen.Controls.Add(this.labelReporte);
-            this.panelResumen.Controls.Add(this.chartAvance);
-            this.panelResumen.Location = new System.Drawing.Point(0, 240);
-            this.panelResumen.Name = "panelResumen";
-            this.panelResumen.Size = new System.Drawing.Size(666, 140);
-            this.panelResumen.TabIndex = 1;
-            // 
-            // panelLine
-            // 
-            this.panelLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.panelLine.BackColor = System.Drawing.Color.Silver;
-            this.panelLine.Location = new System.Drawing.Point(53, 228);
-            this.panelLine.Name = "panelLine";
-            this.panelLine.Size = new System.Drawing.Size(560, 1);
-            this.panelLine.TabIndex = 5;
-            // 
-            // chartAvance
-            // 
-            this.chartAvance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea3.Name = "ChartArea1";
-            this.chartAvance.ChartAreas.Add(chartArea3);
-            legend3.Name = "Legend1";
-            this.chartAvance.Legends.Add(legend3);
-            this.chartAvance.Location = new System.Drawing.Point(326, 0);
-            this.chartAvance.Name = "chartAvance";
-            series5.ChartArea = "ChartArea1";
-            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series5.Legend = "Legend1";
-            series5.Name = "Ideal";
-            series6.ChartArea = "ChartArea1";
-            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Spline;
-            series6.Legend = "Legend1";
-            series6.Name = "Real";
-            this.chartAvance.Series.Add(series5);
-            this.chartAvance.Series.Add(series6);
-            this.chartAvance.Size = new System.Drawing.Size(340, 140);
-            this.chartAvance.TabIndex = 0;
-            this.chartAvance.Text = "chart1";
-            // 
-            // labelReporte
-            // 
-            this.labelReporte.AutoSize = true;
-            this.labelReporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labelReporte.Location = new System.Drawing.Point(0, 0);
-            this.labelReporte.Name = "labelReporte";
-            this.labelReporte.Size = new System.Drawing.Size(163, 20);
-            this.labelReporte.TabIndex = 1;
-            this.labelReporte.Text = "Reporte de Avance";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 44);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Temas Cursados:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 69);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Temas Restantes";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(18, 95);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(69, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Ultimo Tema:";
-            // 
-            // labelTemasCursados
-            // 
-            this.labelTemasCursados.AutoSize = true;
-            this.labelTemasCursados.Location = new System.Drawing.Point(122, 44);
-            this.labelTemasCursados.Name = "labelTemasCursados";
-            this.labelTemasCursados.Size = new System.Drawing.Size(22, 13);
-            this.labelTemasCursados.TabIndex = 5;
-            this.labelTemasCursados.Text = "nro";
-            // 
-            // labelTemasRestantes
-            // 
-            this.labelTemasRestantes.AutoSize = true;
-            this.labelTemasRestantes.Location = new System.Drawing.Point(122, 69);
-            this.labelTemasRestantes.Name = "labelTemasRestantes";
-            this.labelTemasRestantes.Size = new System.Drawing.Size(22, 13);
-            this.labelTemasRestantes.TabIndex = 6;
-            this.labelTemasRestantes.Text = "nro";
-            // 
-            // labelTemaUltimo
-            // 
-            this.labelTemaUltimo.AutoSize = true;
-            this.labelTemaUltimo.Location = new System.Drawing.Point(122, 95);
-            this.labelTemaUltimo.Name = "labelTemaUltimo";
-            this.labelTemaUltimo.Size = new System.Drawing.Size(43, 13);
-            this.labelTemaUltimo.TabIndex = 7;
-            this.labelTemaUltimo.Text = "Tema 1";
-            // 
             // C_Silabo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -327,10 +332,10 @@
             this.Load += new System.EventHandler(this.C_Silabo_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSubirSilabo)).EndInit();
             this.panelResumen.ResumeLayout(false);
             this.panelResumen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartAvance)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSubirSilabo)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -30,7 +30,7 @@ namespace CapaDatos
         }
         public DataTable MostrarAsignacion(int AsignacionID)
         {
-            string sql = "SELECT Unidad,  Capitulo, Tema, NroHoras, Fecha, Observacion " +
+            string sql = "SELECT Unidad,  Capitulo, Tema, R.NroHoras, Fecha, Observacion " +
                 "FROM TRegistroAvance R INNER JOIN TSilabo S ON R.ID_Silabo = S.ID " +
                 "WHERE Asignacion = @Asignacion";
             conexion.setComando(sql);

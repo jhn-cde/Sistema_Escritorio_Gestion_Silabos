@@ -23,6 +23,9 @@ namespace CapaPresentacion
         N_SubirSilabo Subir_Silabo;
         N_Silabo n_Silabo = new N_Silabo();
         DataTable dt_SubirSilabo;
+        DataTable dias;
+        DataRow curSemestre;
+        DataTable dt_avanzado;
         public C_Silabo (int pAsignacionID)
         {
             asignacionID = pAsignacionID;
@@ -180,10 +183,129 @@ namespace CapaPresentacion
             RefrescarDGV();
         }
 
+        private string diaEspañol(string day)
+        {
+            day = day.ToLower();
+            string dia = "-1";
+            if (day == "monday" || day == "lunes")
+                dia = "lunes";
+            else if (day == "tuesday" || day == "martes")
+                dia = "martes";
+            else if (day == "wednesday" || day == "miercoles")
+                dia = "miercoles";
+            else if (day == "thursday" || day == "jueves")
+                dia = "jueves";
+            else if (day == "friday" || day == "viernes")
+                dia = "viernes";
+            else if (day == "saturday" || day == "sabado")
+                dia = "sabado";
+            else if (day == "sunday" || day == "domingo")
+                dia = "domingo";
+            return dia.ToUpper();
+        }
+        private List<string> ObtenerLista(string texto, DataTable dt = null)
+        {
+            if (dt != null)
+            {
+                List<string> list = new List<string>();
+                foreach (DataRow dr in dt.Rows)
+                {
+                    string item = dr[texto].ToString();
+                    if (!list.Contains(item)) list.Add(item);
+                }
+
+                return list;
+            }
+            return null;
+        }
+        private void fillChart(List<string> lista, string serie, bool fechas = false)
+        {
+
+            DateTime minDate = Convert.ToDateTime(curSemestre["Fecha_inicio"].ToString());
+            DateTime maxDate = Convert.ToDateTime(curSemestre["Fecha_fin"].ToString());
+            DateTime curDate = minDate;
+            List<Tuple<DateTime, int>> ejeX = new List<Tuple<DateTime, int>>();
+            List<Tuple<string, int>> ejeY = new List<Tuple<string, int>>();
+
+            // rellenar fechas de avance
+            int x = 0;
+            while (DateTime.Compare(curDate, maxDate) <= 0)
+            {
+                string hoy = diaEspañol(curDate.DayOfWeek.ToString());
+                foreach (DataRow row in dias.Rows)
+                {
+                    if (row["Dia"].ToString().ToUpper() == hoy)
+                    {
+                        ejeX.Add(new Tuple<DateTime, int>(curDate, x));
+                        x++;
+                    }
+                }
+
+                curDate = curDate.AddDays(1);
+            }
+
+            int yi, xi = 0;
+            int y = 0;
+
+            // Avance ideal
+            if (dt_SubirSilabo != null)
+            {
+                foreach (DataRow tema in dt_SubirSilabo.Rows)
+                {
+                    chartAvance.Series["Ideal"].Points.AddXY(ejeX[xi].Item2, y);
+                    ejeY.Add(new Tuple<string, int>(tema["Tema"].ToString(), y));
+                    xi++; y++;
+                }
+            }
+            // Avance real
+            if (dt_avanzado != null)
+            {
+                List<string> list = new List<string>();
+                foreach (DataRow tema in dt_avanzado.Rows)
+                {
+                    string item = tema["Tema"].ToString();
+                    DateTime fechaAvance = Convert.ToDateTime(tema["Fecha"].ToString());
+                    if (!list.Contains(item))
+                    {
+                        bool added = false;
+                        xi = 0; yi = 0;
+                        while (xi < ejeX.Count() && !added)
+                        {
+                            if(DateTime.Compare(fechaAvance.Date, ejeX[xi].Item1.Date) == 0)
+                            {
+                                while (yi < ejeY.Count() && !added)
+                                {
+                                    if(ejeY[yi].Item1 == item)
+                                    {
+                                        chartAvance.Series["Real"].Points.AddXY(ejeX[xi].Item2, ejeY[yi].Item2);
+                                    }
+                                    yi++;
+                                }
+                            }
+                            xi++;
+                        }
+                        list.Add(item);
+                    }
+                }
+            }
+        }
 
         private void C_Silabo_Load(object sender, EventArgs e)
         {
+            curSemestre = new N_Semestre().MostrarUltimo();
+            
+            dias = new N_Dia().DiasAsignacion(asignacionID.ToString());
+            dt_avanzado = new N_RegistroAvance().Mostrar(asignacionID);
+            //List<string> avanzado = ObtenerLista("Tema", dt_avanzado);
+            List<string> subirSilabo = ObtenerLista("Tema", dt_SubirSilabo);
 
+            chartAvance.ChartAreas["ChartAvance"].AxisX.LabelStyle.Enabled = false;
+            chartAvance.ChartAreas["ChartAvance"].AxisY.LabelStyle.Enabled = false;
+
+            chartAvance.ChartAreas["ChartAvance"].AxisX.MajorGrid.LineWidth = 0;
+            chartAvance.ChartAreas["ChartAvance"].AxisY.MajorGrid.LineWidth = 0;
+
+            fillChart(subirSilabo, "Ideal");
         }
     }
 }
