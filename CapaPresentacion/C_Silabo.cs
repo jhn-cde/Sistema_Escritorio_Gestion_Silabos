@@ -290,9 +290,13 @@ namespace CapaPresentacion
                 }
             }
             // Rellenar labels
+            
             labelTemasCursados.Text = listAvanzados.Count.ToString();
             labelTemasRestantes.Text = (ejeY.Count - listAvanzados.Count).ToString();
-            labelTemaUltimo.Text = listAvanzados[listAvanzados.Count-1];
+            if(listAvanzados.Count > 0)
+                labelTemaUltimo.Text = listAvanzados[listAvanzados.Count-1];
+            else
+                labelTemaUltimo.Text = "";
         }
 
         private void C_Silabo_Load(object sender, EventArgs e)
