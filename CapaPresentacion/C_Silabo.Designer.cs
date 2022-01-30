@@ -249,18 +249,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(18, 69);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(90, 13);
+            this.label1.Size = new System.Drawing.Size(93, 13);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Temas Restantes";
+            this.label1.Text = "Temas Restantes:";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(18, 44);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(89, 13);
+            this.label2.Size = new System.Drawing.Size(98, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Temas Cursados:";
+            this.label2.Text = "Temas Avanzados:";
             // 
             // labelReporte
             // 
@@ -275,6 +275,12 @@
             // chartAvance
             // 
             this.chartAvance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea1.AxisX.LabelStyle.Enabled = false;
+            chartArea1.AxisX.MajorGrid.Enabled = false;
+            chartArea1.AxisX.Title = "Fecha";
+            chartArea1.AxisY.LabelStyle.Enabled = false;
+            chartArea1.AxisY.MajorGrid.Enabled = false;
+            chartArea1.AxisY.Title = "Temas";
             chartArea1.Name = "ChartAvance";
             this.chartAvance.ChartAreas.Add(chartArea1);
             legend1.BackColor = System.Drawing.Color.Transparent;

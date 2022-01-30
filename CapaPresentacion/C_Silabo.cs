@@ -26,6 +26,7 @@ namespace CapaPresentacion
         DataTable dias;
         DataRow curSemestre;
         DataTable dt_avanzado;
+        List<string> listAvanzados;
         public C_Silabo (int pAsignacionID)
         {
             asignacionID = pAsignacionID;
@@ -258,14 +259,14 @@ namespace CapaPresentacion
                 }
             }
             // Avance real
+            listAvanzados = new List<string>();
             if (dt_avanzado != null)
             {
-                List<string> list = new List<string>();
                 foreach (DataRow tema in dt_avanzado.Rows)
                 {
                     string item = tema["Tema"].ToString();
                     DateTime fechaAvance = Convert.ToDateTime(tema["Fecha"].ToString());
-                    if (!list.Contains(item))
+                    if (!listAvanzados.Contains(item))
                     {
                         bool added = false;
                         xi = 0; yi = 0;
@@ -284,10 +285,14 @@ namespace CapaPresentacion
                             }
                             xi++;
                         }
-                        list.Add(item);
+                        listAvanzados.Add(item);
                     }
                 }
             }
+            // Rellenar labels
+            labelTemasCursados.Text = listAvanzados.Count.ToString();
+            labelTemasRestantes.Text = (ejeY.Count - listAvanzados.Count).ToString();
+            labelTemaUltimo.Text = listAvanzados[listAvanzados.Count-1];
         }
 
         private void C_Silabo_Load(object sender, EventArgs e)
@@ -298,12 +303,6 @@ namespace CapaPresentacion
             dt_avanzado = new N_RegistroAvance().Mostrar(asignacionID);
             //List<string> avanzado = ObtenerLista("Tema", dt_avanzado);
             List<string> subirSilabo = ObtenerLista("Tema", dt_SubirSilabo);
-
-            chartAvance.ChartAreas["ChartAvance"].AxisX.LabelStyle.Enabled = false;
-            chartAvance.ChartAreas["ChartAvance"].AxisY.LabelStyle.Enabled = false;
-
-            chartAvance.ChartAreas["ChartAvance"].AxisX.MajorGrid.LineWidth = 0;
-            chartAvance.ChartAreas["ChartAvance"].AxisY.MajorGrid.LineWidth = 0;
 
             fillChart(subirSilabo, "Ideal");
         }
