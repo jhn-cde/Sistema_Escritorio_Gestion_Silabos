@@ -20,6 +20,7 @@ namespace CapaPresentacion
         DataTable temasNoCursados;
         DataTable ultimoTema;
         DataTable dias;
+        DataRow Semestre;
         //Declarar un delegate y Event. StatusUpdate
         public delegate void StatusUpdateHandler(object sender, EventArgs e);
         public event StatusUpdateHandler OnUpdateStatus;
@@ -119,8 +120,6 @@ namespace CapaPresentacion
             }
 
             // Rellenar dias de avance
-            DataRow Semestre = new N_Semestre().MostrarUltimo();
-            dias = new N_Dia().DiasAsignacion(asignacionID.ToString());
             DateTime minDate = Convert.ToDateTime(Semestre["Fecha_inicio"].ToString());
             DateTime maxDate = DateTime.Now;
             dateTimePicker.MinDate = minDate;
@@ -130,6 +129,9 @@ namespace CapaPresentacion
         }
         private void C_Control_Load_1(object sender, EventArgs e)
         {
+
+            Semestre = new N_Semestre().MostrarUltimo();
+            dias = new N_Dia().DiasAsignacion(asignacionID.ToString());
             Refrescar();
         }
         private int idSilabo(DataTable dt1)

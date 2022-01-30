@@ -180,9 +180,10 @@ namespace CapaPresentacion
             RefrescarDGV();
         }
 
-        private void dgvSubirSilabo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+
+        private void C_Silabo_Load(object sender, EventArgs e)
         {
-           
+
         }
     }
 }
