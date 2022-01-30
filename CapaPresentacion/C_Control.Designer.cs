@@ -38,7 +38,6 @@
             this.dateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.textBoxObservacion = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.labelTimeDate = new System.Windows.Forms.Label();
             this.cbTema = new System.Windows.Forms.ComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.cbCapitulo = new System.Windows.Forms.ComboBox();
@@ -107,7 +106,6 @@
             this.panel1.Controls.Add(this.dateTimePicker);
             this.panel1.Controls.Add(this.textBoxObservacion);
             this.panel1.Controls.Add(this.label5);
-            this.panel1.Controls.Add(this.labelTimeDate);
             this.panel1.Controls.Add(this.cbTema);
             this.panel1.Controls.Add(this.label3);
             this.panel1.Controls.Add(this.cbCapitulo);
@@ -150,17 +148,6 @@
             this.label5.Size = new System.Drawing.Size(70, 13);
             this.label5.TabIndex = 3;
             this.label5.Text = "Observacion:";
-            // 
-            // labelTimeDate
-            // 
-            this.labelTimeDate.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.labelTimeDate.AutoSize = true;
-            this.labelTimeDate.Location = new System.Drawing.Point(604, 13);
-            this.labelTimeDate.Name = "labelTimeDate";
-            this.labelTimeDate.Size = new System.Drawing.Size(69, 13);
-            this.labelTimeDate.TabIndex = 2;
-            this.labelTimeDate.Text = "Lunes  17:35";
-            this.labelTimeDate.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // cbTema
             // 
@@ -335,7 +322,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox textBoxObservacion;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label labelTimeDate;
         private System.Windows.Forms.ComboBox cbTema;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox cbCapitulo;

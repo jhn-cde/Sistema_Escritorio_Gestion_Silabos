@@ -108,7 +108,7 @@ namespace CapaPresentacion
             // text_buscar
             // 
             this.text_buscar.Location = new System.Drawing.Point(25, 17);
-            this.text_buscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.text_buscar.Margin = new System.Windows.Forms.Padding(2);
             this.text_buscar.Name = "text_buscar";
             this.text_buscar.Size = new System.Drawing.Size(172, 20);
             this.text_buscar.TabIndex = 9;

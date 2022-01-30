@@ -105,7 +105,7 @@ namespace CapaPresentacion
             // 
             // btn_AgregarEditarSilabo
             // 
-            this.btn_AgregarEditarSilabo.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(234)))), ((int)(((byte)(0)))));
+            this.btn_AgregarEditarSilabo.BackColor = System.Drawing.Color.RoyalBlue;
             this.btn_AgregarEditarSilabo.FlatAppearance.BorderSize = 0;
             this.btn_AgregarEditarSilabo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_AgregarEditarSilabo.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -167,7 +167,7 @@ namespace CapaPresentacion
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
-            // FrmAddSilabo
+            // Frm_AddSilabo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -186,7 +186,7 @@ namespace CapaPresentacion
             this.Controls.Add(this.txtCodCurso);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "FrmAddSilabo";
+            this.Name = "Frm_AddSilabo";
             this.Text = "FrmAddSilabo";
             this.Load += new System.EventHandler(this.FrmAddSilabo_Load);
             this.ResumeLayout(false);
