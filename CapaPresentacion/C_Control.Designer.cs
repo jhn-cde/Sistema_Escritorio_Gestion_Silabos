@@ -128,7 +128,6 @@
             this.dateTimePicker.Size = new System.Drawing.Size(126, 20);
             this.dateTimePicker.TabIndex = 6;
             this.dateTimePicker.CloseUp += new System.EventHandler(this.dateTimePicker_CloseUp);
-            this.dateTimePicker.ValueChanged += new System.EventHandler(this.dateTimePicker_ValueChanged);
             // 
             // textBoxObservacion
             // 
@@ -195,8 +194,6 @@
             this.cbUnidad.Name = "cbUnidad";
             this.cbUnidad.Size = new System.Drawing.Size(296, 21);
             this.cbUnidad.TabIndex = 1;
-            this.cbUnidad.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            this.cbUnidad.Leave += new System.EventHandler(this.C_Control_Load);
             // 
             // label1
             // 
