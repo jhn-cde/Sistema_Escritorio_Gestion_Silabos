@@ -159,29 +159,35 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    DateTime fecha = DateTime.Now;
-                    n_RegistroAvance.ID_Silabo = IdSilabo;
-                    n_RegistroAvance.Fecha = dateTimePicker.Value;
-                    n_RegistroAvance.FechaRegistro = fecha;
-                    n_RegistroAvance.Observacion = textBoxObservacion.Text;
-                    n_RegistroAvance.NroHoras = Convert.ToInt32(numericNroHoras.Value);
-                    n_RegistroAvance.Guardar();                  
-                    int IdAvance = n_RegistroAvance.IdRegistro(IdSilabo, fecha);
-                    if(IdAvance != -1)
+                    var confirmResult = MessageBox.Show("¿Está seguro que quiere guardar '" + cbTema.Text + "' con fecha: " + dateTimePicker.Value.Day.ToString()+"-"+dateTimePicker.Value.Month.ToString()+"-"+dateTimePicker.Value.Year.ToString() + "?",
+                                     "Confirmar",
+                                     MessageBoxButtons.YesNo);
+                    if(confirmResult == DialogResult.Yes)
                     {
-                        foreach (DataGridViewRow fila in dgvAlumnos.Rows)
+                        DateTime fecha = DateTime.Now;
+                        n_RegistroAvance.ID_Silabo = IdSilabo;
+                        n_RegistroAvance.Fecha = dateTimePicker.Value;
+                        n_RegistroAvance.FechaRegistro = fecha;
+                        n_RegistroAvance.Observacion = textBoxObservacion.Text;
+                        n_RegistroAvance.NroHoras = Convert.ToInt32(numericNroHoras.Value);
+                        n_RegistroAvance.Guardar();
+                        int IdAvance = n_RegistroAvance.IdRegistro(IdSilabo, fecha);
+                        if (IdAvance != -1)
                         {
-                            DataGridViewCheckBoxCell b = (DataGridViewCheckBoxCell)fila.Cells["Asistencia"];
-                            n_Asistencia.ID_Registro = IdAvance;
-                            n_Asistencia.CodAlumno = fila.Cells[2].Value.ToString();
-                            n_Asistencia.Asistio = Convert.ToBoolean(b.Value);
-                            n_Asistencia.Guardar();
+                            foreach (DataGridViewRow fila in dgvAlumnos.Rows)
+                            {
+                                DataGridViewCheckBoxCell b = (DataGridViewCheckBoxCell)fila.Cells["Asistencia"];
+                                n_Asistencia.ID_Registro = IdAvance;
+                                n_Asistencia.CodAlumno = fila.Cells[2].Value.ToString();
+                                n_Asistencia.Asistio = Convert.ToBoolean(b.Value);
+                                n_Asistencia.Guardar();
+                            }
+                            MessageBox.Show("Guardado Correctamente");
                         }
-                        MessageBox.Show("Guardado Correctamente");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error!!!");
+                        else
+                        {
+                            MessageBox.Show("Error!!!");
+                        }
                     }
                 }
                 Refrescar();
