@@ -107,5 +107,12 @@ namespace CapaDatos
             conexion.cmd.Parameters.AddWithValue("@Fecha", fecha);
             return conexion.executeReader();
         }
+        public DataTable NroHorasDia(DateTime fecha)
+        {
+            string sql = "select Sum(NroHoras) as Horas from TRegistroAvance where CONVERT(date, Fecha) = CONVERT(date, @Fecha)";
+            conexion.setComando(sql);
+            conexion.cmd.Parameters.AddWithValue("@Fecha", fecha);
+            return conexion.executeReader();
+        }
     }
 }

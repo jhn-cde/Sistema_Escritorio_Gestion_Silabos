@@ -136,6 +136,8 @@ namespace CapaPresentacion
         private int idSilabo(DataTable dt1)
         {
             var value = cbTema.SelectedItem;
+            if (ultimoTema != null && ultimoTema.Rows[0]["Tema"].ToString() == value.ToString())
+                return Convert.ToInt32(ultimoTema.Rows[0]["Id"].ToString());
             foreach (DataRow dr in dt1.Rows)
             {
                 if (dr["Tema"].ToString() == value.ToString())
@@ -214,11 +216,17 @@ namespace CapaPresentacion
                 {
                     if (row["Dia"].ToString().ToUpper() == hoy)
                     {
-                        valido = true;
                         // definir maximo numeric
-                        numericNroHoras.Maximum = Convert.ToInt32(row["NroHoras"]);
-                        numericNroHoras.Value = Convert.ToInt32(row["NroHoras"].ToString());
-                        return now;
+                        int tmpHoras = Convert.ToInt32(row["NroHoras"]);
+                        numericNroHoras.Maximum = tmpHoras;
+                        tmpHoras -= n_RegistroAvance.nroHorasDia(now);
+
+                        if (tmpHoras >= 1)
+                        {
+                            numericNroHoras.Value = Convert.ToInt32(row["NroHoras"].ToString());
+                            valido = true;
+                            return now;
+                        }
                     }
                 }
 
@@ -261,9 +269,15 @@ namespace CapaPresentacion
                 if (row["Dia"].ToString().ToUpper() == dia)
                 {
                     // definir maximo numeric
-                    numericNroHoras.Maximum = Convert.ToInt32(row["NroHoras"]);
-                    numericNroHoras.Value = Convert.ToInt32(row["NroHoras"].ToString());
-                    valido = true;
+                    int tmpHoras = Convert.ToInt32(row["NroHoras"]);
+                    numericNroHoras.Maximum = tmpHoras;
+                    tmpHoras -= n_RegistroAvance.nroHorasDia(dateTimePicker.Value);
+
+                    if (tmpHoras >= 1)
+                    {
+                        numericNroHoras.Value = Convert.ToInt32(row["NroHoras"].ToString());
+                        valido = true;
+                    }
                 }
             }
             if (!valido)

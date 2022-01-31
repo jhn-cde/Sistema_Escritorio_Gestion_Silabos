@@ -542,3 +542,5 @@ INSERT [dbo].[TSemestre] ([Semestre], [Fecha_inicio], [Fecha_fin]) VALUES ('2021
 INSERT [dbo].[TSemestre] ([Semestre], [Fecha_inicio], [Fecha_fin]) VALUES ('2021-II', CONVERT(DATE,'18-10-2021',105), CONVERT(DATE,'14-2-2022',105))
 GO
 
+select Sum(NroHoras) as Horas from TRegistroAvance  where Fecha = CONVERT(DATE,'28-1-2022',105)
+select * from TRegistroAvance
