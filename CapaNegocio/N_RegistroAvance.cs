@@ -93,6 +93,15 @@ namespace CapaNegocio
                 return ans;
             }
         }
-        
+        public int nroHorasDia(DateTime fecha)
+        {
+            DataTable dt = d_RegistroAvance.NroHorasDia(fecha);
+            string nrHoras = dt.Rows[0][0].ToString();
+
+            if (nrHoras == "")
+                return 0;
+            else
+                return Convert.ToInt32( nrHoras);
+        }
     }
 }

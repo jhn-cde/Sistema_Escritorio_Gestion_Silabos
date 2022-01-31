@@ -28,10 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Legend legend1 = new System.Windows.Forms.DataVisualization.Charting.Legend();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend3 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea4 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Legend legend4 = new System.Windows.Forms.DataVisualization.Charting.Legend();
+            System.Windows.Forms.DataVisualization.Charting.Series series7 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series8 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnAtras = new System.Windows.Forms.Button();
             this.btnAgregar = new System.Windows.Forms.Button();
@@ -52,11 +56,13 @@
             this.chartAvance = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.dgvSubirSilabo = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.chartAvance2 = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panelResumen.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartAvance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubirSilabo)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartAvance2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -186,15 +192,16 @@
             this.panelLine.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.panelLine.BackColor = System.Drawing.Color.Silver;
-            this.panelLine.Location = new System.Drawing.Point(53, 228);
+            this.panelLine.Location = new System.Drawing.Point(73, 208);
             this.panelLine.Name = "panelLine";
-            this.panelLine.Size = new System.Drawing.Size(560, 1);
+            this.panelLine.Size = new System.Drawing.Size(520, 1);
             this.panelLine.TabIndex = 5;
             // 
             // panelResumen
             // 
             this.panelResumen.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.panelResumen.Controls.Add(this.chartAvance2);
             this.panelResumen.Controls.Add(this.labelTemaUltimo);
             this.panelResumen.Controls.Add(this.labelTemasRestantes);
             this.panelResumen.Controls.Add(this.labelTemasCursados);
@@ -203,9 +210,9 @@
             this.panelResumen.Controls.Add(this.label2);
             this.panelResumen.Controls.Add(this.labelReporte);
             this.panelResumen.Controls.Add(this.chartAvance);
-            this.panelResumen.Location = new System.Drawing.Point(0, 240);
+            this.panelResumen.Location = new System.Drawing.Point(0, 220);
             this.panelResumen.Name = "panelResumen";
-            this.panelResumen.Size = new System.Drawing.Size(666, 140);
+            this.panelResumen.Size = new System.Drawing.Size(666, 160);
             this.panelResumen.TabIndex = 1;
             // 
             // labelTemaUltimo
@@ -275,35 +282,35 @@
             // chartAvance
             // 
             this.chartAvance.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            chartArea1.AxisX.LabelStyle.Enabled = false;
-            chartArea1.AxisX.MajorGrid.Enabled = false;
-            chartArea1.AxisX.Title = "Fecha";
-            chartArea1.AxisY.LabelStyle.Enabled = false;
-            chartArea1.AxisY.MajorGrid.Enabled = false;
-            chartArea1.AxisY.Title = "Temas";
-            chartArea1.Name = "ChartAvance";
-            this.chartAvance.ChartAreas.Add(chartArea1);
-            legend1.BackColor = System.Drawing.Color.Transparent;
-            legend1.DockedToChartArea = "ChartAvance";
-            legend1.Name = "Legend1";
-            this.chartAvance.Legends.Add(legend1);
-            this.chartAvance.Location = new System.Drawing.Point(326, 0);
+            chartArea3.AxisX.LabelStyle.Enabled = false;
+            chartArea3.AxisX.MajorGrid.Enabled = false;
+            chartArea3.AxisX.Title = "Nro Horas";
+            chartArea3.AxisY.LabelStyle.Enabled = false;
+            chartArea3.AxisY.MajorGrid.Enabled = false;
+            chartArea3.AxisY.Title = "Nro Temas";
+            chartArea3.Name = "ChartAvance";
+            this.chartAvance.ChartAreas.Add(chartArea3);
+            legend3.BackColor = System.Drawing.Color.Transparent;
+            legend3.DockedToChartArea = "ChartAvance";
+            legend3.Name = "Legend1";
+            this.chartAvance.Legends.Add(legend3);
+            this.chartAvance.Location = new System.Drawing.Point(366, 0);
             this.chartAvance.Name = "chartAvance";
-            series1.BorderWidth = 3;
-            series1.ChartArea = "ChartAvance";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series1.Color = System.Drawing.Color.Lime;
-            series1.Legend = "Legend1";
-            series1.Name = "Ideal";
-            series2.BorderWidth = 3;
-            series2.ChartArea = "ChartAvance";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
-            series2.Color = System.Drawing.Color.Blue;
-            series2.Legend = "Legend1";
-            series2.Name = "Real";
-            this.chartAvance.Series.Add(series1);
-            this.chartAvance.Series.Add(series2);
-            this.chartAvance.Size = new System.Drawing.Size(340, 140);
+            series5.BorderWidth = 3;
+            series5.ChartArea = "ChartAvance";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series5.Color = System.Drawing.Color.Lime;
+            series5.Legend = "Legend1";
+            series5.Name = "Ideal";
+            series6.BorderWidth = 3;
+            series6.ChartArea = "ChartAvance";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series6.Color = System.Drawing.Color.Blue;
+            series6.Legend = "Legend1";
+            series6.Name = "Real";
+            this.chartAvance.Series.Add(series5);
+            this.chartAvance.Series.Add(series6);
+            this.chartAvance.Size = new System.Drawing.Size(300, 160);
             this.chartAvance.TabIndex = 0;
             this.chartAvance.Text = "chart1";
             // 
@@ -319,13 +326,46 @@
             this.dgvSubirSilabo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSubirSilabo.Location = new System.Drawing.Point(0, 95);
             this.dgvSubirSilabo.Name = "dgvSubirSilabo";
-            this.dgvSubirSilabo.Size = new System.Drawing.Size(666, 120);
+            this.dgvSubirSilabo.Size = new System.Drawing.Size(666, 100);
             this.dgvSubirSilabo.TabIndex = 0;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             this.openFileDialog1.Filter = "Excel Files|*.xlsx";
+            // 
+            // chartAvance2
+            // 
+            this.chartAvance2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            chartArea4.AxisX.LabelStyle.Enabled = false;
+            chartArea4.AxisX.MajorGrid.Enabled = false;
+            chartArea4.AxisX.Title = "Temas";
+            chartArea4.AxisY.LabelStyle.Enabled = false;
+            chartArea4.AxisY.MajorGrid.Enabled = false;
+            chartArea4.AxisY.Title = "Fechas";
+            chartArea4.Name = "ChartAvance";
+            this.chartAvance2.ChartAreas.Add(chartArea4);
+            legend4.BackColor = System.Drawing.Color.Transparent;
+            legend4.DockedToChartArea = "ChartAvance";
+            legend4.Name = "Legend1";
+            this.chartAvance2.Legends.Add(legend4);
+            this.chartAvance2.Location = new System.Drawing.Point(66, 0);
+            this.chartAvance2.Name = "chartAvance2";
+            series7.BorderWidth = 3;
+            series7.ChartArea = "ChartAvance";
+            series7.Color = System.Drawing.Color.Lime;
+            series7.Legend = "Legend1";
+            series7.Name = "Ideal";
+            series8.BorderWidth = 3;
+            series8.ChartArea = "ChartAvance";
+            series8.Color = System.Drawing.Color.Blue;
+            series8.Legend = "Legend1";
+            series8.Name = "Real";
+            this.chartAvance2.Series.Add(series7);
+            this.chartAvance2.Series.Add(series8);
+            this.chartAvance2.Size = new System.Drawing.Size(300, 160);
+            this.chartAvance2.TabIndex = 8;
+            this.chartAvance2.Text = "chart1";
             // 
             // C_Silabo
             // 
@@ -342,6 +382,7 @@
             this.panelResumen.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chartAvance)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSubirSilabo)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.chartAvance2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -367,5 +408,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label labelReporte;
+        private System.Windows.Forms.DataVisualization.Charting.Chart chartAvance2;
     }
 }

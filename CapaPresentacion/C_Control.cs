@@ -136,6 +136,8 @@ namespace CapaPresentacion
         private int idSilabo(DataTable dt1)
         {
             var value = cbTema.SelectedItem;
+            if (ultimoTema != null && ultimoTema.Rows[0]["Tema"].ToString() == value.ToString())
+                return Convert.ToInt32(ultimoTema.Rows[0]["Id"].ToString());
             foreach (DataRow dr in dt1.Rows)
             {
                 if (dr["Tema"].ToString() == value.ToString())
@@ -146,18 +148,6 @@ namespace CapaPresentacion
             return -1;
         }
 
-        private int nroHoras(DataTable dt1)
-        {
-            var value = cbTema.SelectedItem;
-            foreach (DataRow dr in dt1.Rows)
-            {
-                if (dr["Tema"].ToString() == value.ToString())
-                {
-                    return Convert.ToInt32(dr["NroHoras"].ToString());
-                }
-            }
-            return -1;
-        }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (cbUnidad.SelectedIndex > -1 && cbCapitulo.SelectedIndex > -1 && cbTema.SelectedIndex > -1)
@@ -169,29 +159,35 @@ namespace CapaPresentacion
                 }
                 else
                 {
-                    DateTime fecha = DateTime.Now;
-                    n_RegistroAvance.ID_Silabo = IdSilabo;
-                    n_RegistroAvance.Fecha = dateTimePicker.Value;
-                    n_RegistroAvance.FechaRegistro = fecha;
-                    n_RegistroAvance.Observacion = textBoxObservacion.Text;
-                    n_RegistroAvance.NroHoras = nroHoras(temasNoCursados);
-                    n_RegistroAvance.Guardar();                  
-                    int IdAvance = n_RegistroAvance.IdRegistro(IdSilabo, fecha);
-                    if(IdAvance != -1)
+                    var confirmResult = MessageBox.Show("¿Está seguro que quiere guardar '" + cbTema.Text + "' con fecha: " + dateTimePicker.Value.Day.ToString()+"-"+dateTimePicker.Value.Month.ToString()+"-"+dateTimePicker.Value.Year.ToString() + "?",
+                                     "Confirmar",
+                                     MessageBoxButtons.YesNo);
+                    if(confirmResult == DialogResult.Yes)
                     {
-                        foreach (DataGridViewRow fila in dgvAlumnos.Rows)
+                        DateTime fecha = DateTime.Now;
+                        n_RegistroAvance.ID_Silabo = IdSilabo;
+                        n_RegistroAvance.Fecha = dateTimePicker.Value;
+                        n_RegistroAvance.FechaRegistro = fecha;
+                        n_RegistroAvance.Observacion = textBoxObservacion.Text;
+                        n_RegistroAvance.NroHoras = Convert.ToInt32(numericNroHoras.Value);
+                        n_RegistroAvance.Guardar();
+                        int IdAvance = n_RegistroAvance.IdRegistro(IdSilabo, fecha);
+                        if (IdAvance != -1)
                         {
-                            DataGridViewCheckBoxCell b = (DataGridViewCheckBoxCell)fila.Cells["Asistencia"];
-                            n_Asistencia.ID_Registro = IdAvance;
-                            n_Asistencia.CodAlumno = fila.Cells[2].Value.ToString();
-                            n_Asistencia.Asistio = Convert.ToBoolean(b.Value);
-                            n_Asistencia.Guardar();
+                            foreach (DataGridViewRow fila in dgvAlumnos.Rows)
+                            {
+                                DataGridViewCheckBoxCell b = (DataGridViewCheckBoxCell)fila.Cells["Asistencia"];
+                                n_Asistencia.ID_Registro = IdAvance;
+                                n_Asistencia.CodAlumno = fila.Cells[2].Value.ToString();
+                                n_Asistencia.Asistio = Convert.ToBoolean(b.Value);
+                                n_Asistencia.Guardar();
+                            }
+                            MessageBox.Show("Guardado Correctamente");
                         }
-                        MessageBox.Show("Guardado Correctamente");
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error!!!");
+                        else
+                        {
+                            MessageBox.Show("Error!!!");
+                        }
                     }
                 }
                 Refrescar();
@@ -226,8 +222,17 @@ namespace CapaPresentacion
                 {
                     if (row["Dia"].ToString().ToUpper() == hoy)
                     {
-                        valido = true;
-                        return now;
+                        // definir maximo numeric
+                        int tmpHoras = Convert.ToInt32(row["NroHoras"]);
+                        numericNroHoras.Maximum = tmpHoras;
+                        tmpHoras -= n_RegistroAvance.nroHorasDia(now);
+
+                        if (tmpHoras >= 1)
+                        {
+                            numericNroHoras.Value = Convert.ToInt32(row["NroHoras"].ToString());
+                            valido = true;
+                            return now;
+                        }
                     }
                 }
 
@@ -269,7 +274,16 @@ namespace CapaPresentacion
                 diasString += " " + row["Dia"].ToString();
                 if (row["Dia"].ToString().ToUpper() == dia)
                 {
-                    valido = true;
+                    // definir maximo numeric
+                    int tmpHoras = Convert.ToInt32(row["NroHoras"]);
+                    numericNroHoras.Maximum = tmpHoras;
+                    tmpHoras -= n_RegistroAvance.nroHorasDia(dateTimePicker.Value);
+
+                    if (tmpHoras >= 1)
+                    {
+                        numericNroHoras.Value = Convert.ToInt32(row["NroHoras"].ToString());
+                        valido = true;
+                    }
                 }
             }
             if (!valido)
