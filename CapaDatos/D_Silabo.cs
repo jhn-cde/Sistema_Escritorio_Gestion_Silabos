@@ -30,7 +30,10 @@ namespace CapaDatos
         }
         public DataTable MostrarCursoSemestre(string Semestre, int ID)
         {
-            string sql = "SELECT * FROM TSilabo WHERE Asignacion = @Asignacion";
+            string sql = "SELECT S.ID, S.Asignacion, Unidad,  Capitulo, Tema, S.NroHoras, sum(R.NroHoras) as HorasAvanzadas "+
+                "FROM TRegistroAvance R right JOIN TSilabo S ON R.ID_Silabo = S.ID "+
+                "WHERE Asignacion = @Asignacion "+
+                "Group by S.ID, S.Asignacion, Unidad, Capitulo, Tema, S.NroHoras";
             conexion.setComando(sql);
             conexion.cmd.Parameters.AddWithValue("@Asignacion", ID);
             return conexion.executeReader();

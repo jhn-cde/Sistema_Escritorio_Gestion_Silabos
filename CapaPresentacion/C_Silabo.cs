@@ -227,7 +227,8 @@ namespace CapaPresentacion
             }
             return 0;
         }
-        private void fillChart(List<string> lista, string serie, bool fechas = false)
+
+        private void fillChart()
         {
 
             DateTime minDate = Convert.ToDateTime(curSemestre["Fecha_inicio"].ToString());
@@ -270,7 +271,7 @@ namespace CapaPresentacion
                     while (nroHorasTema > 0)
                     {
                         dia = diaEspañol(ejeX[xi].Item1.DayOfWeek.ToString());
-                        chartAvance.Series["Ideal"].Points.AddXY(ejeX[xi].Item2, y);
+                        chartAvance2.Series["Ideal"].Points.AddXY(y, ejeX[xi].Item2);
                         nroHorasTema -= nroHorasDia;
                         if (nroHorasTema >= 0)
                         {
@@ -304,7 +305,7 @@ namespace CapaPresentacion
                                 if(ejeY[yi].Item1 == item)
                                 {
                                     Console.WriteLine(item);
-                                    chartAvance.Series["Real"].Points.AddXY(ejeX[xi].Item2, ejeY[yi].Item2);
+                                    chartAvance2.Series["Real"].Points.AddXY(ejeY[yi].Item2, ejeX[xi].Item2);
                                     added = true;
                                 }
                                 yi++;
@@ -318,16 +319,58 @@ namespace CapaPresentacion
                     }
                 }
             }
+        }
+        private void fillChartTime()
+        {
+
+            DateTime minDate = Convert.ToDateTime(curSemestre["Fecha_inicio"].ToString());
+            DateTime maxDate = Convert.ToDateTime(curSemestre["Fecha_fin"].ToString());
+            DateTime curDate = minDate;
+            List<Tuple<string, int>> ejeY = new List<Tuple<string, int>>();
+
+            int y = 0;
+            int conteoHoras = 0;
+            // Avance ideal
+            if (dt_SubirSilabo != null)
+            {
+                int nroHorasTema = 0;
+                foreach (DataRow tema in dt_SubirSilabo.Rows)
+                {
+                    nroHorasTema = Convert.ToInt32(tema["NroHoras"]);
+                    conteoHoras += nroHorasTema;
+                    chartAvance.Series["Ideal"].Points.AddXY(conteoHoras, y);
+                    ejeY.Add(new Tuple<string, int>(tema["Tema"].ToString(), y));
+                    y++;
+                }
+            }
+            // Avance real
+            listAvanzados = new List<string>();
+            conteoHoras = 0;
+            y = 0;
+            if (dt_avanzado != null)
+            {
+                foreach (DataRow tema in dt_avanzado.Rows)
+                {
+                    string item = tema["Tema"].ToString();
+                    conteoHoras += Convert.ToInt32(tema["NroHoras"]);
+                    
+                    if (!listAvanzados.Contains(item))
+                    {
+                        listAvanzados.Add(item);
+                        chartAvance.Series["Real"].Points.AddXY(conteoHoras, y);
+                        y++;
+                    }
+                }
+            }
             // Rellenar labels
-            
+
             labelTemasCursados.Text = listAvanzados.Count.ToString();
             labelTemasRestantes.Text = (ejeY.Count - listAvanzados.Count).ToString();
-            if(listAvanzados.Count > 0)
-                labelTemaUltimo.Text = listAvanzados[listAvanzados.Count-1];
+            if (listAvanzados.Count > 0)
+                labelTemaUltimo.Text = listAvanzados[listAvanzados.Count - 1];
             else
                 labelTemaUltimo.Text = "";
         }
-
         private void C_Silabo_Load(object sender, EventArgs e)
         {
             curSemestre = new N_Semestre().MostrarUltimo();
@@ -337,7 +380,9 @@ namespace CapaPresentacion
             //List<string> avanzado = ObtenerLista("Tema", dt_avanzado);
             List<string> subirSilabo = ObtenerLista("Tema", dt_SubirSilabo);
 
-            fillChart(subirSilabo, "Ideal");
+
+            fillChart();
+            fillChartTime();
         }
     }
 }
