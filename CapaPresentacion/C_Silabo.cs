@@ -214,10 +214,18 @@ namespace CapaPresentacion
                     string item = dr[texto].ToString();
                     if (!list.Contains(item)) list.Add(item);
                 }
-
                 return list;
             }
             return null;
+        }
+        private int nroHoras(string dia)
+        {
+            foreach(DataRow row in dias.Rows)
+            {
+                if (row["Dia"].ToString() == dia)
+                    return Convert.ToInt32(row["NroHoras"].ToString());
+            }
+            return 0;
         }
         private void fillChart(List<string> lista, string serie, bool fechas = false)
         {
@@ -251,11 +259,29 @@ namespace CapaPresentacion
             // Avance ideal
             if (dt_SubirSilabo != null)
             {
+                int nroHorasDia = 0;
+                int nroHorasTema = 0;
+                string dia = diaEspañol(ejeX[xi].Item1.DayOfWeek.ToString());
+                nroHorasDia = nroHoras(dia);
                 foreach (DataRow tema in dt_SubirSilabo.Rows)
                 {
-                    chartAvance.Series["Ideal"].Points.AddXY(ejeX[xi].Item2, y);
+                    nroHorasTema = Convert.ToInt32(tema["NroHoras"]);
+                    
+                    while (nroHorasTema > 0)
+                    {
+                        dia = diaEspañol(ejeX[xi].Item1.DayOfWeek.ToString());
+                        chartAvance.Series["Ideal"].Points.AddXY(ejeX[xi].Item2, y);
+                        nroHorasTema -= nroHorasDia;
+                        if (nroHorasTema >= 0)
+                        {
+                            xi++;
+                            nroHorasDia = nroHoras(dia);
+                        }
+                        else
+                            nroHorasDia = -1 * nroHorasTema;
+                    }
                     ejeY.Add(new Tuple<string, int>(tema["Tema"].ToString(), y));
-                    xi++; y++;
+                    y++;
                 }
             }
             // Avance real
@@ -266,25 +292,28 @@ namespace CapaPresentacion
                 {
                     string item = tema["Tema"].ToString();
                     DateTime fechaAvance = Convert.ToDateTime(tema["Fecha"].ToString());
+                    
+                    bool added = false;
+                    xi = 0; yi = 0;
+                    while (xi < ejeX.Count() && !added)
+                    {
+                        if(DateTime.Compare(fechaAvance.Date, ejeX[xi].Item1.Date) == 0)
+                        {
+                            while (yi < ejeY.Count() && !added)
+                            {
+                                if(ejeY[yi].Item1 == item)
+                                {
+                                    Console.WriteLine(item);
+                                    chartAvance.Series["Real"].Points.AddXY(ejeX[xi].Item2, ejeY[yi].Item2);
+                                    added = true;
+                                }
+                                yi++;
+                            }
+                        }
+                        xi++;
+                    }
                     if (!listAvanzados.Contains(item))
                     {
-                        bool added = false;
-                        xi = 0; yi = 0;
-                        while (xi < ejeX.Count() && !added)
-                        {
-                            if(DateTime.Compare(fechaAvance.Date, ejeX[xi].Item1.Date) == 0)
-                            {
-                                while (yi < ejeY.Count() && !added)
-                                {
-                                    if(ejeY[yi].Item1 == item)
-                                    {
-                                        chartAvance.Series["Real"].Points.AddXY(ejeX[xi].Item2, ejeY[yi].Item2);
-                                    }
-                                    yi++;
-                                }
-                            }
-                            xi++;
-                        }
                         listAvanzados.Add(item);
                     }
                 }

@@ -291,13 +291,13 @@
             this.chartAvance.Name = "chartAvance";
             series1.BorderWidth = 3;
             series1.ChartArea = "ChartAvance";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
             series1.Color = System.Drawing.Color.Lime;
             series1.Legend = "Legend1";
             series1.Name = "Ideal";
             series2.BorderWidth = 3;
             series2.ChartArea = "ChartAvance";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.Line;
+            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.StepLine;
             series2.Color = System.Drawing.Color.Blue;
             series2.Legend = "Legend1";
             series2.Name = "Real";
