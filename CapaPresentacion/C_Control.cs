@@ -146,18 +146,6 @@ namespace CapaPresentacion
             return -1;
         }
 
-        private int nroHoras(DataTable dt1)
-        {
-            var value = cbTema.SelectedItem;
-            foreach (DataRow dr in dt1.Rows)
-            {
-                if (dr["Tema"].ToString() == value.ToString())
-                {
-                    return Convert.ToInt32(dr["NroHoras"].ToString());
-                }
-            }
-            return -1;
-        }
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             if (cbUnidad.SelectedIndex > -1 && cbCapitulo.SelectedIndex > -1 && cbTema.SelectedIndex > -1)
@@ -174,7 +162,7 @@ namespace CapaPresentacion
                     n_RegistroAvance.Fecha = dateTimePicker.Value;
                     n_RegistroAvance.FechaRegistro = fecha;
                     n_RegistroAvance.Observacion = textBoxObservacion.Text;
-                    n_RegistroAvance.NroHoras = nroHoras(temasNoCursados);
+                    n_RegistroAvance.NroHoras = Convert.ToInt32(numericNroHoras.Value);
                     n_RegistroAvance.Guardar();                  
                     int IdAvance = n_RegistroAvance.IdRegistro(IdSilabo, fecha);
                     if(IdAvance != -1)
@@ -227,6 +215,9 @@ namespace CapaPresentacion
                     if (row["Dia"].ToString().ToUpper() == hoy)
                     {
                         valido = true;
+                        // definir maximo numeric
+                        numericNroHoras.Maximum = Convert.ToInt32(row["NroHoras"]);
+                        numericNroHoras.Value = Convert.ToInt32(row["NroHoras"].ToString());
                         return now;
                     }
                 }
@@ -269,6 +260,9 @@ namespace CapaPresentacion
                 diasString += " " + row["Dia"].ToString();
                 if (row["Dia"].ToString().ToUpper() == dia)
                 {
+                    // definir maximo numeric
+                    numericNroHoras.Maximum = Convert.ToInt32(row["NroHoras"]);
+                    numericNroHoras.Value = Convert.ToInt32(row["NroHoras"].ToString());
                     valido = true;
                 }
             }
