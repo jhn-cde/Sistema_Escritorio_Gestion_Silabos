@@ -271,7 +271,7 @@ namespace CapaPresentacion
                     while (nroHorasTema > 0)
                     {
                         dia = diaEspañol(ejeX[xi].Item1.DayOfWeek.ToString());
-                        chartAvance2.Series["Ideal"].Points.AddXY(y, ejeX[xi].Item2);
+                        chartAvance2.Series["Ideal"].Points.AddXY(ejeX[xi].Item2, y);
                         nroHorasTema -= nroHorasDia;
                         if (nroHorasTema >= 0)
                         {
@@ -305,7 +305,7 @@ namespace CapaPresentacion
                                 if(ejeY[yi].Item1 == item)
                                 {
                                     Console.WriteLine(item);
-                                    chartAvance2.Series["Real"].Points.AddXY(ejeY[yi].Item2, ejeX[xi].Item2);
+                                    chartAvance2.Series["Real"].Points.AddXY(ejeX[xi].Item2, ejeY[yi].Item2);
                                     added = true;
                                 }
                                 yi++;
