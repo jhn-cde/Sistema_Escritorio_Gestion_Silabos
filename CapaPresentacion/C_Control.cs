@@ -231,7 +231,7 @@ namespace CapaPresentacion
                         {
                             numericNroHoras.Value = Convert.ToInt32(row["NroHoras"].ToString());
                             valido = true;
-                            return now;
+                            return now.Date;
                         }
                     }
                 }
@@ -239,7 +239,7 @@ namespace CapaPresentacion
                 now = now.AddDays(-1);
                 hoy = diaEspañol(now.DayOfWeek.ToString());
             }
-            return now;
+            return now.Date;
         }
         private string diaEspañol(string day)
         {
