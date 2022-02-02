@@ -61,7 +61,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="C_Alumno.cs" />
+    <Compile Include="C_Alumno.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="C_Alumno.Designer.cs">
       <DependentUpon>C_Alumno.cs</DependentUpon>
     </Compile>

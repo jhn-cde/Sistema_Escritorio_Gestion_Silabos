@@ -57,5 +57,9 @@ namespace CapaNegocio
         {
             return d_Asistencia.Eliminar(ID);
         }
+        public DataTable Reporte(int AsignacionID)
+        {
+            return d_Asistencia.Reporte(AsignacionID);
+        }
     }
 }
