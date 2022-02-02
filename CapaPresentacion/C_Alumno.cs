@@ -13,16 +13,6 @@ using CapaEntidades;
 
 namespace CapaPresentacion
 {
-    class tuple
-    {
-        public tuple()
-        {
-            x = 0;
-            y = 0;
-        }
-        public int x { get; set; }
-        public int y { get; set; }
-    }
     public partial class C_Alumno : UserControl
     {
         protected Conexion aConexion;
@@ -32,68 +22,10 @@ namespace CapaPresentacion
         int AsignacionID;
         N_SubirAlumnos Subir_Alumnos;
         N_AlumnoCurso n_AlumnoCurso = new N_AlumnoCurso();
-        DataTable dt_SubirAlumnosCurso;
         public C_Alumno(int pAsignacionID)
         {
             AsignacionID = pAsignacionID;
             InitializeComponent();
-        }
-        private DataTable sourceData(List<string> list)
-        {
-            DataTable table = new DataTable();
-            table.Columns.Add("Nro".ToString());
-            table.Columns.Add("Codigo".ToString());
-            table.Columns.Add("Nombres".ToString());
-            table.Columns.Add("Asistencias".ToString());
-            table.Columns.Add("Faltas".ToString());
-            foreach (string str in list)
-            {
-                string fecha = str.ToString();
-                table.Columns.Add(fecha.ToString());
-            }
-            if (dt_SubirAlumnosCurso != null)
-            {
-                int tam = dt_SubirAlumnosCurso.Rows.Count;
-                foreach (DataRow row in dt_SubirAlumnosCurso.Rows)
-                {
-                    DataRow dr = table.NewRow();
-                    dr["Nro"] = row["NRO"];
-                    dr["Codigo"] = row["CodAlumno"];
-                    dr["Nombres"] = row["Nombres"];
-                    table.Rows.Add(dr);
-                }
-                tuple[] rs = new tuple[tam];
-                for (int i = 0; i < tam; i++)
-                {
-                    rs[i] = new tuple();
-                }
-                foreach (string str in list)
-                {
-                    string fecha = str.ToString();                    
-                    List<bool> lista = n_AlumnoCurso.AsistioFecha(AsignacionID, fecha);
-                    for (int i = 0; i < lista.Count; i++)
-                    {
-                        string value;
-                        if (lista[i])
-                        {
-                            rs[i].x += 1;
-                            value = "asistio";
-                        }
-                        else
-                        {
-                            rs[i].y += 1;
-                            value = "falto";
-                        }
-                        table.Rows[i][fecha] = value;
-                    }
-                }
-                for (int i = 0; i < tam; i++)
-                {
-                    table.Rows[i]["Asistencias"] = rs[i].x;
-                    table.Rows[i]["Faltas"] = rs[i].y;
-                }
-            }
-            return table;
         }
         private void RefrescarDGV()
         {
@@ -102,11 +34,13 @@ namespace CapaPresentacion
             dgvAlumnos.Columns.Clear();
             //dgvAlumnos.Refresh();
 
-            dt_SubirAlumnosCurso = n_AlumnoCurso.Mostrar(AsignacionID);
-            List<string> list = n_AlumnoCurso.Fechas(AsignacionID);
-            if (dt_SubirAlumnosCurso != null)
+            DataTable dt_alumnos = new N_Asistencia().Reporte(AsignacionID);
+
+            //dt_SubirAlumnosCurso = n_AlumnoCurso.Mostrar(AsignacionID);
+            //List<string> list = n_AlumnoCurso.Fechas(AsignacionID);
+            if (dt_alumnos != null)
             {
-                dgvAlumnos.DataSource = sourceData(list);
+                dgvAlumnos.DataSource = dt_alumnos;
             }
             //int row = 0;
 
