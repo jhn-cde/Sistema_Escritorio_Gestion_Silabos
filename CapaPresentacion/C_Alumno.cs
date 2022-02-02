@@ -34,13 +34,21 @@ namespace CapaPresentacion
             dgvAlumnos.Columns.Clear();
             //dgvAlumnos.Refresh();
 
-            DataTable dt_alumnos = new N_Asistencia().Reporte(AsignacionID);
+            DataTable dt_alumnos_reporte = new N_Asistencia().Reporte(AsignacionID);
 
             //dt_SubirAlumnosCurso = n_AlumnoCurso.Mostrar(AsignacionID);
             //List<string> list = n_AlumnoCurso.Fechas(AsignacionID);
-            if (dt_alumnos != null)
+            if (dt_alumnos_reporte != null)
             {
-                dgvAlumnos.DataSource = dt_alumnos;
+                dgvAlumnos.DataSource = dt_alumnos_reporte;
+            }
+            else
+            {
+                DataTable dt_alumnos = n_AlumnoCurso.Mostrar(AsignacionID);
+                if(dt_alumnos != null)
+                {
+                    dgvAlumnos.DataSource = dt_alumnos;
+                }
             }
             //int row = 0;
 
